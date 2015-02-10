@@ -317,7 +317,7 @@ When we compile and run this program through Valgrind using Memcheck, we get:
     ==4942== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
     ==4942== Command: ./a.out
     ==4942== 
-    ==4942== Use of uninitialised value of size 8
+    ==4942== Use of uninitialized value of size 8
     ==4942==    at 0x4C2E1E0: strcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
     ==4942==    by 0x400C4D: main (in /home/william/ucr-cs100/tutorials/valgrind/a.out)
     ==4942== 
@@ -360,10 +360,10 @@ Let's run the command:
 We get the following output that is different from before:
 
 ```
-    ==5278== Use of uninitialised value of size 8
+    ==5278== Use of uninitialized value of size 8
     ==5278==    at 0x4C2E1E0: strcpy (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
     ==5278==    by 0x400C4D: main (in /home/william/ucr-cs100/tutorials/valgrind/a.out)
-    ==5278==  Uninitialised value was created by a stack allocation
+    ==5278==  Uninitialized value was created by a stack allocation
     ==5278==    at 0x400BFA: main (in /home/william/ucr-cs100/tutorials/valgrind/a.out)
 ```
 

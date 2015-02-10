@@ -71,7 +71,11 @@ A lot of information will be displayed in the terminal, and that can be boring f
 
 	$ mv --help | grep overwrite
 
+<<<<<<< HEAD
 You probably have only two sentences displayed on your screen. Now, use the commands with the appropriate flags and be happy!
+=======
+Now you probably have only two sentences displayed on your screen. Now, use the commands with the appropriate flags and be happy!
+>>>>>>> e5100d18674dcf6b36be22f0ab40221bcb7e3a9f
 
 
 Keeping the 'mv' command as example, another powerful way of getting help is through reading the manual. Often referred to as "man pages". You can find it easily on the internet. But in case some catastrophe happened with the internet and then you are no longer connected the easiest way to do it is typing:
@@ -91,7 +95,11 @@ Shell keeps track of all yours previous typed commands. Accessing and using it c
 
 	$ history
 
+<<<<<<< HEAD
 It displays on your screen all your previous commands ordered by a sequential number. You can use this command just to remember something you typed days ago and now you need to run it again. Now, here is the trick. Once you know the number attached in your desired typed command or the position in the list you don't need to type it again. Just run:
+=======
+It displays in your screen all your previous commands ordered by a sequential number. You can use this command just to remember something you typed days ago and now you need to run it again. Now, here is the trick. Once you know the number attached in your desired typed command or the position in the list you don't need to type it again. Just run:
+>>>>>>> e5100d18674dcf6b36be22f0ab40221bcb7e3a9f
 
 	$ !622
 
@@ -128,7 +136,11 @@ HISTSIZE is related to how many commands you want to keep track of. Setting it t
 
 ![find: powerful tool](http://funnystack.com/wp-content/uploads/2014/04/Funny-Horse-44.jpg)
 
+<<<<<<< HEAD
 The `find` command is used to fetch the positions of files you want on a Unix or Linux system.  `find` will search any set of directories you specify for files that match the supplied search criteria.  You can search for files by name, owner, group, type, permissions, date, and other criteria.  The search is recursive in that it will search all subdirectories too (very powerful, right ? ).  The syntax looks like this:
+=======
+The `find` command is used to fetch the positions of  files you want on a Unix or Linux system.  `find` will search any set of directories you specify for files that match the supplied search criteria.  You can search for files by name, owner, group, type, permissions, date, and other criteria.  The search is recursive in that it will search all subdirectories too (very powerful, right ? ).  The syntax looks like this:
+>>>>>>> e5100d18674dcf6b36be22f0ab40221bcb7e3a9f
 
     find where-to-look criteria what-to-do
 All arguments to find are optional, and there are defaults for all parts.
