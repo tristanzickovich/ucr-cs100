@@ -37,11 +37,12 @@ As inferred by the name, a scoped pointer will be deleted when it goes out of sc
 
 ###General Rules:
 To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
-1)	They cannot be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.
-2)	They cannot be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.
-3)	They CAN be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers
-4)	They CAN be reset: There is also a built in reset function which allows you to reset the pointer to whatever you wish, deleting the existing pointer.
-
+<ol>
+<li> They <b>CANNOT</b> be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.</li>
+<li> They <b>CANNOT</b> be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.</li>
+<li> They <b>CAN</b> be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers.</li>
+<li> They <b>CAN</b> be reset: There is also a built in reset function which allows you to reset the pointer to whatever you wish, deleting the existing pointer.</li>
+</ol>
 ###How to Declare:
 
 ```
