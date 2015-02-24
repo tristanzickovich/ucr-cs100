@@ -18,11 +18,11 @@ With smart pointers, the cleanup is done for you! That means you don’t have to
 Each smart pointer has a unique set of instructions that determines when it will be deleted.  You will choose which of the smart pointers to use based on the circumstance. These aspects will be discussed under each individual smart pointer’s section.
 
 ##Before Getting Started
-Smart pointers are a part of the Boost library.  To use them you must include the boost library in your code, or prepend “boost::” in front of your pointer declaration.  Specific examples will be shown with each pointer later.  Also, these pointers are a part of C++ 11. When compiling your code, you must include the C++ 11 flag:
-If using UCR’s servers, you must enter the following command to enable the C++ 11 settings for the compiler: 
-source	     /opt/rh/devtoolset-2/enable
-After this (or if using another system that supports compiling with C++ 11), when compiling use the following format:
-g++ -std=c++11 yourfile.cpp 
+Smart pointers are a part of the Boost library.  To use them you must include the boost library in your code, or prepend `boost::` in front of your pointer declaration.  Specific examples will be shown with each pointer later.  Also, these pointers are a part of C++ 11. When compiling your code, you must include the C++ 11 flag:
+If using UCR’s servers, you must enter the following command to enable the C++ 11 settings for the compiler:<br>
+`source	     /opt/rh/devtoolset-2/enable`<br>
+After this (or if using another system that supports compiling with C++ 11), when compiling use the following format:<br>
+`g++ -std=c++11 yourfile.cpp`
 	
 ##Should I Use Smart Pointers?
 As a rule of thumb, smart pointers should be used when there is ownership of the object. To give an idea of ownership, say you have a program that has many functions.  You declare your pointer in one of them.  But two functions point to that same memory. Gasp! Which function actually owns it and is responsible for it? Ownership means a specific function “owns” the pointer and must delete it when appropriate. If you need another function to delete the pointer when you’re done using it, you should use raw pointers.  For more detail and examples on ownership, <a href="http://ericlavesson.blogspot.com/2013/03/c-ownership-semantics.html">click here!</a>
@@ -61,7 +61,7 @@ To maintain its proper functionality, there are a few rules that come along with
 		
 	class PointerDemo{
 		private:
-			boost::scoped_ptr<int> num_pointer(new int);    //REF 2
+			boost::scoped_ptr<int> num_pointer;    //REF 2
 		public:
 			PointerDemo()									//REF 3
 			  : num_pointer(new int)
@@ -89,10 +89,10 @@ The above code demonstrates declaration of scoped pointers. Use the references b
 
 Quick Notes (see above for visual): 
 <ul>
-<li>Find where you wish to declare your pointer. </li>
-<li>Declare the scoped pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.</li>
+<li>Determine where you wish to declare your pointer. </li>
+<li>Declare the scoped pointer as you would a vector, except with <code>boost::</code> prepended, and an argument after in parentheses.</li>
 <li>The pointer type goes between the angle brackets. </li>
-<li>The argument inside the parentheses: “new” and then the type of pointer. </li>
+<li>The argument inside the parentheses: <code>new</code> and then the type of pointer. </li>
 </ul>
 
 
