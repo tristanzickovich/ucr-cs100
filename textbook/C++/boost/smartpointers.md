@@ -89,7 +89,7 @@ The above code demonstrates declaration of scoped pointers. Use the references b
 <li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to a new pointer of the same data type.</li>
 </ol>
 
-Quick Notes (see above for visual): 
+###Quick Notes (see above for visual): 
 <ul>
 <li>Determine where you wish to declare your pointer. </li>
 <li>Declare the scoped pointer as you would a vector, except with <code>boost::</code> prepended, and an argument after in parentheses.</li>
@@ -112,21 +112,21 @@ There are a few rules that go along with the shared pointer.
 
 ```
 	#include <iostream>
-	#include <boost/shared_ptr.hpp>							//REF 1
+	#include <boost/shared_ptr.hpp>									//REF 1
 	using namespace std;
 		
 	class PointerDemo{
 		private:
-			boost::shared_ptr<int> num_pointer			    //REF 2
+			boost::shared_ptr<int> num_pointer				    	//REF 2
 		public:
-			PointerDemo(boost::shared_ptr<int> num_ptr)						//REF 3
+			PointerDemo(boost::shared_ptr<int> num_ptr)				//REF 3
 			  : num_pointer(new int)
 			{}
 	};	
 	
 	int main(){
-		boost::shared_ptr<int> my_ints(new int);			//REF 4
-		PointerDemo one(my_ints);					//REF 5
+		boost::shared_ptr<int> my_ints(new int);					//REF 4
+		PointerDemo one(my_ints);									//REF 5
 		PointerDemo two(my_ints);
 		PointerDemo three(my_ints);
 	}
@@ -140,6 +140,14 @@ The above code demonstrates declaration of scoped pointers. Use the references b
 <li>REF 4: Shared pointer declared as a function variable</li>
 <li>REF 5: Shared pointer passed as the explicit parameter to an object constructor</li>
 </ol>
+
+###Quick Notes (see above for visual): 
+<ul>
+<li>Determine where you wish to declare your pointer. </li>
+<li>Declare the shared pointer as you would a vector, except with <code>boost::</code> prepended, and an argument after in parentheses.</li>
+<li>The pointer type goes between the angle brackets. </li>
+<li>The argument inside the parentheses: <code>new</code> and then the type of pointer. </li>
+</ul>
 
 TODO:
 
