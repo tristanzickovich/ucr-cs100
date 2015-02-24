@@ -2,9 +2,9 @@
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 
-Finally! <a href="http://spongebob.wikia.com/wiki/Patrick_Star" style="text-decoration:none" target="_blank">Patrick Star</a> finished his big programming project and it seems to work perfectly! <i>“I think it’s done, <a href="http://spongebob.wikia.com/wiki/SpongeBob_SquarePants" style="text-decoration:none" target="_blank">SpongeBob</a>! I’ve been working on it for like… 23 minutes already!”</i> Patrick exclaims. He’s tested every case he could possibly think of; all two of them that came to his head. Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! <i>“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like <a href="http://spongebob.wikia.com/wiki/Gary_the_Snail" style="text-decoration:none" target="_blank">Gary</a>. A nice mixture of tabs and spaces. And no lines longer than 200 characters!”</i> says Spongebob. As Patrick is about to submit his pride and joy, <a href="http://spongebob.wikia.com/wiki/Squidward_Tentacles" style="text-decoration:none" target="_blank">Squidward</a> pokes his head through the window and scoffs, <i>“don’t forget to check for memory leaks, idiot”</i>, quickly disappearing from sight. After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
-<i>“Let’s go catch those Jellyfish, Patrick!”</i> Spongebob yells happily.<br>
-<i>“Just a second Spongebob, I gotta check one last thing”</i> Patrick says bluntly.<br>
+Finally! <a href="http://spongebob.wikia.com/wiki/Patrick_Star" style="text-decoration:none" target="_blank">Patrick Star</a> finished his big programming project and it seems to work perfectly! <i>“I think it’s done, <a href="http://spongebob.wikia.com/wiki/SpongeBob_SquarePants" style="text-decoration:none" target="_blank">SpongeBob</a>! I’ve been working on it for like… 23 minutes already!”</i> Patrick exclaims. He’s tested every case he could possibly think of; all two of them that came to his head. Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! <i>“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like <a href="http://spongebob.wikia.com/wiki/Gary_the_Snail" style="text-decoration:none" target="_blank">Gary</a>. A nice mixture of tabs and spaces. And no lines longer than 200 characters!”</i> says SpongeBob. As Patrick is about to submit his pride and joy, <a href="http://spongebob.wikia.com/wiki/Squidward_Tentacles" style="text-decoration:none" target="_blank">Squidward</a> pokes his head through the window and scoffs, <i>“don’t forget to check for memory leaks, idiot”</i>, quickly disappearing from sight. After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
+<i>“Let’s go catch those Jellyfish, Patrick!”</i> SpongeBob yells happily.<br>
+<i>“Just a second SpongeBob, I gotta check one last thing”</i> Patrick says bluntly.<br>
 
 Valgrind myBIGproject.out … tests … tests … tests … ENTER!<br>
 <b>Leak Summary:</b><br>
@@ -29,7 +29,16 @@ As a rule of thumb, smart pointers should be used when there is ownership of the
 
 
 ##Let’s Get Started!
-Now that the basics have been covered, let’s get to the Crabby Patty of this tutorial! In total, boost contains six different smart pointers.  These include scoped_ptr, shared_ptr, scoped_array, shared_array, weak_ptr, and intrusive_ptr. We will focus mainly on scoped and shared_ptr here.  Here we go!
+Now that the basics have been covered, let’s get to the 
+<a href="http://spongebob.wikia.com/wiki/Krabby_Patty" target="_blank">Krabby Patty</a> 
+of this tutorial! In total, boost contains six different smart pointers.  These include 
+<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_ptr.htm" target="_blank">scoped_ptr</a>,
+<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_ptr.htm" target="_blank">shared_ptr</a>, 
+<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_array.htm" target="_blank">scoped_array</a>, 
+<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_array.htm" target="_blank">shared_array</a>, 
+<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/weak_ptr.htm" target="_blank">weak_ptr</a>, 
+and <a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/intrusive_ptr.html" target="_blank">intrusive_ptr</a>. 
+We will focus mainly on scoped and shared_ptr here.  Here we go!
 
 ##Scoped_ptr
 ###How its managed:
@@ -70,6 +79,7 @@ To maintain its proper functionality, there are a few rules that come along with
 ```
 
 The above code demonstrates declaration of scoped pointers. Remember to include the boost library, as shown above.  Next find where you wish to declare your pointer. You declare the scoped pointer as you would a vector, except with boost:: prepended, and an argument after in parentheses. The type of pointer goes in between the angle brackets.  The argument inside the parentheses is “new” and then the type of pointer. 
+
 
 TODO:
 shared pointer tutorial
