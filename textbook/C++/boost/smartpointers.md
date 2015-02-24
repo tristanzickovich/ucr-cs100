@@ -117,7 +117,7 @@ There are a few rules that go along with the shared pointer.
 		
 	class PointerDemo{
 		private:
-			boost::shared_ptr<int> num_pointer				    	//REF 2
+			boost::shared_ptr<int> num_pointer;				    	//REF 2
 		public:
 			PointerDemo(boost::shared_ptr<int> num_ptr)				//REF 3
 			  : num_pointer(new int)
@@ -148,6 +148,12 @@ The above code demonstrates declaration of scoped pointers. Use the references b
 <li>The pointer type goes between the angle brackets. </li>
 <li>The argument inside the parentheses: <code>new</code> and then the type of pointer. </li>
 </ul>
+
+###Wrap-Up
+Write wrap up here
+
+###Other Smart Pointers (A Brief Coverage)
+Write a couple sentences about the other smart pointers here.
 
 TODO:
 
