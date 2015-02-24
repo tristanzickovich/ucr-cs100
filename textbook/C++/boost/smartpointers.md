@@ -55,34 +55,54 @@ To maintain its proper functionality, there are a few rules that come along with
 ###How to Declare:
 
 ```
-		#include <iostream>
-		#include <boost/scoped_ptr.hpp>
-		using namespace std;
+	#include <iostream>
+	#include <boost/scoped_ptr.hpp>					//REF 1
+	using namespace std;
 		
-		class PointerDemo{
-			private:
-      //declared as a class variable
-				boost::scoped_ptr<int> num_pointer(new int);   
-			public:
-				//initialized in a constructor
-				PointerDemo()		
-				  : num_pointer(new int)
-				{}
-		};		
-		int main(){
-			//declared as a function variable
-			boost::scoped_ptr<int> my_ints(new int);
-			boost::scoped_ptr<int> my_swap_ptr(new int);
-			my_ints.swap(my_swap_ptr);  //swaps the implicit with explicit param
-			my_ints.reset(new int); //resets smart pointer
+	class PointerDemo{
+		private:
+      			//declared as a class variable
+			boost::scoped_ptr<int> num_pointer(new int);    //REF 2
+		public:
+			//initialized in a constructor
+			PointerDemo()					//REF 3
+			  : num_pointer(new int)
+			{}
+	};	
+	
+	int main(){
+		//declared as a function variable
+		boost::scoped_ptr<int> my_ints(new int);		//REF 4
+		boost::scoped_ptr<int> my_swap_ptr(new int);
+		my_ints.swap(my_swap_ptr);  //swaps the implicit with explicit param	//REF 5
+		my_ints.reset(new int); //resets smart pointer		//REF 6
 		}
 ```
 
-The above code demonstrates declaration of scoped pointers. Remember to include the boost library, as shown above.  Next find where you wish to declare your pointer. You declare the scoped pointer as you would a vector, except with boost:: prepended, and an argument after in parentheses. The type of pointer goes in between the angle brackets.  The argument inside the parentheses is “new” and then the type of pointer. 
+The above code demonstrates declaration of scoped pointers. Use the references below:
+
+<ol>
+<li>REF 1: Make sure to inlcude the boost library for the scoped pointer
+<li>REF 2: Scoped pointer declared as a class variable
+<li>REF 3: Scoped pointer initialized in a constructor
+<li>REF 4: Scoped pointer declared as a function variable
+<li>REF 5: Built in `swap` function. It swaps the implicit and explicit parameters
+<li>REF 6: Built in `reset` function. It resets the smart pointer to whatever you like.
+</ol>
+
+Quick Notes (see above for visual): 
+<ul>
+<li>Find where you wish to declare your pointer. </li>
+<li>Declare the scoped pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.</li>
+<li>The pointer type goes between the angle brackets. </li>
+<li>The argument inside the parentheses: “new” and then the type of pointer. </li>
+</ul>
 
 
 TODO:
 shared pointer tutorial
-markdown formatting and links
+
+table of contents
+
 code example
 
