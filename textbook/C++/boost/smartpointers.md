@@ -81,11 +81,11 @@ To maintain its proper functionality, there are a few rules that come along with
 The above code demonstrates declaration of scoped pointers. Use the references below for brief explanation:
 
 <ol>
-<li>REF 1: Make sure to inlcude the <code>boost library</code> for the scoped pointer.</li>
+<li>REF 1: Make sure to include the <code>boost library</code> for the scoped pointer.</li>
 <li>REF 2: Scoped pointer declared as a (private) class variable.</li>
 <li>REF 3: Scoped pointer initialized in a constructor.</li>
 <li>REF 4: Scoped pointer declared as a function variable.</li>
-<li>REF 5: Built in <code>swap</code> function. It swaps the implicit(my_ints) with the explicit(my_swap_ptr) parameter.</li>
+<li>REF 5: Built in <code>swap</code> function. It swaps the implicit (my_ints) with the explicit (my_swap_ptr) parameter.</li>
 <li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to a new pointer of the same data type.</li>
 </ol>
 
@@ -99,7 +99,7 @@ The above code demonstrates declaration of scoped pointers. Use the references b
 
 ##Shared Pointer
 ###How It's Managed
-Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  Why? Say you have a class which contains a pointer as a member variable. In another function you create several objects of this class, all of which need access to that pointer.  If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! The scoped pointer will be deleted when when no object no longer owns it.
+Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  Why? Say you have a class which contains a pointer as a member variable. In another function you create several objects of this class, all of which need access to that pointer.  If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! The scoped pointer will be deleted when no object no longer owns it.
 
 ###General Rules:
 There are a few rules that go along with the shared pointer. 
@@ -134,7 +134,7 @@ There are a few rules that go along with the shared pointer.
 The above code demonstrates declaration of scoped pointers. Use the references below for brief explanation:
 
 <ol>
-<li>REF 1: Make sure to inlcude the <code>boost library</code> for the shared pointer</li>
+<li>REF 1: Make sure to include the <code>boost library</code> for the shared pointer</li>
 <li>REF 2: Shared pointer declared as a (private) class variable</li>
 <li>REF 3: Shared pointer initialized in a constructor for an object</li>
 <li>REF 4: Shared pointer declared as a function variable</li>
