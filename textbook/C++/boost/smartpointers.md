@@ -99,11 +99,40 @@ Quick Notes (see above for visual):
 
 ##Shared Pointer
 ###How It's Managed
-Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  Why? Say you have a class which contains a pointer as a member variable. In another function you create several objects of this class, which all need access to that pointer.  If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! The scoped pointer will be delete when when no object no longer owns it.
+Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  Why? Say you have a class which contains a pointer as a member variable. In another function you create several objects of this class, all of which need access to that pointer.  If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! The scoped pointer will be deleted when when no object no longer owns it.
+
+###General Rules:
+There are a few rules that go along with the shared pointer. 
+<ol>
+<li> They <b>CAN</b> be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.</li>
+<li> They <b>CAN</b> be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.</li>
+</ol>
+
+##How To Declare:
+
+```
+	#include <iostream>
+	#include <boost/shared_ptr.hpp>							//REF 1
+	using namespace std;
+		
+	class PointerDemo{
+		private:
+			boost::shared_ptr<int> num_pointer			    //REF 2
+		public:
+			PointerDemo(boost::shared_ptr<int> num_ptr)						//REF 3
+			  : num_pointer(new int)
+			{}
+	};	
+	
+	int main(){
+		boost::shared_ptr<int> my_ints(new int);			//REF 4
+		PointerDemo one(my_ints);					//REF 5
+		PointerDemo two(my_ints);
+		PointerDemo three(my_ints);
+	}
+```
 
 TODO:
-
-shared pointer tutorial
 
 table of contents
 
