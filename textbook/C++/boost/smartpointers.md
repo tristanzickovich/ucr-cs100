@@ -50,7 +50,7 @@ To maintain its proper functionality, there are a few rules that come along with
 <li> They <b>CANNOT</b> be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.</li>
 <li> They <b>CANNOT</b> be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.</li>
 <li> They <b>CAN</b> be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers.</li>
-<li> They <b>CAN</b> be reset: There is also a built in reset function which allows you to reset the pointer to whatever you wish, deleting the existing pointer.</li>
+<li> They <b>CAN</b> be reset: There is also a built in reset function which allows you to reset the pointer to another smart pointer of the same data type, deleting the existing pointer.</li>
 </ol>
 ###How to Declare:
 
@@ -61,7 +61,7 @@ To maintain its proper functionality, there are a few rules that come along with
 		
 	class PointerDemo{
 		private:
-			boost::scoped_ptr<int> num_pointer;    //REF 2
+			boost::scoped_ptr<int> num_pointer			    //REF 2
 		public:
 			PointerDemo()									//REF 3
 			  : num_pointer(new int)
@@ -80,11 +80,11 @@ The above code demonstrates declaration of scoped pointers. Use the references b
 
 <ol>
 <li>REF 1: Make sure to inlcude the <code>boost library</code> for the scoped pointer
-<li>REF 2: Scoped pointer declared as a class variable
+<li>REF 2: Scoped pointer declared as a (private) class variable
 <li>REF 3: Scoped pointer initialized in a constructor
 <li>REF 4: Scoped pointer declared as a function variable
-<li>REF 5: Built in <code>swap</code> function. It swaps the implicit and explicit parameters
-<li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to whatever you like.
+<li>REF 5: Built in <code>swap</code> function. It swaps the implicit(my_ints) with the explicit(my_swap_ptr) parameter
+<li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to a new pointer of the same data type.
 </ol>
 
 Quick Notes (see above for visual): 
