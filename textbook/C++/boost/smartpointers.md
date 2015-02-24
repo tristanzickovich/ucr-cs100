@@ -1,7 +1,12 @@
 #Smart Pointers C++
 
-##Intro (Are You Ready Kids?! Aye Aye Captain!)
+##Overview
+This tutorial will cover smart pointers from the `boost library`. The main focus will be on `scoped_ptr` and `shared_ptr`.
+We'll begin with <i>why</i> and <i>where</i> you would want to use smart pointers, and discuss some things to know before using them.
+Then we'll jump into the details of `scoped pointers` followed by `shared pointers`, and briefly brush over the remaining smart pointers. 
+To wrap it up we will take a look at a coding example that uses what we cover.
 
+##Intro (Are You Ready Kids?! Aye Aye Captain!)
 Finally! <a href="http://spongebob.wikia.com/wiki/Patrick_Star" style="text-decoration:none" target="_blank">Patrick Star</a> finished his big programming project and it seems to work perfectly! 
 <i>“I think it’s done, <a href="http://spongebob.wikia.com/wiki/SpongeBob_SquarePants" style="text-decoration:none" target="_blank">SpongeBob</a>! 
 I’ve been working on it for like… 23 minutes already!”</i> Patrick exclaims. 
