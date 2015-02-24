@@ -76,15 +76,15 @@ To maintain its proper functionality, there are a few rules that come along with
 	}
 ```
 
-The above code demonstrates declaration of scoped pointers. Use the references below:
+The above code demonstrates declaration of scoped pointers. Use the references below for brief explanation:
 
 <ol>
-<li>REF 1: Make sure to inlcude the boost library for the scoped pointer
+<li>REF 1: Make sure to inlcude the <code>boost library</code> for the scoped pointer
 <li>REF 2: Scoped pointer declared as a class variable
 <li>REF 3: Scoped pointer initialized in a constructor
 <li>REF 4: Scoped pointer declared as a function variable
-<li>REF 5: Built in `swap` function. It swaps the implicit and explicit parameters
-<li>REF 6: Built in `reset` function. It resets the smart pointer to whatever you like.
+<li>REF 5: Built in <code>swap</code> function. It swaps the implicit and explicit parameters
+<li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to whatever you like.
 </ol>
 
 Quick Notes (see above for visual): 
@@ -97,6 +97,7 @@ Quick Notes (see above for visual):
 
 
 TODO:
+
 shared pointer tutorial
 
 table of contents
