@@ -2,7 +2,7 @@
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 
-Finally! Patrick Star finished his big programming project and it seems to work perfectly! <i>“I think it’s done, Spongebob! I’ve been working on it for like… 23 minutes already!”</i> Patrick exclaims. He’s tested every case he could possibly think of; all two of them that came to his head. Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! <i>“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like Gary. A nice mixture of tabs and spaces. And no lines longer than 200 characters!”</i> says Spongebob. As Patrick is about to submit his pride and joy, Squidward pokes his head through the window and scoffs, “don’t forget to check for memory leaks, idiot”, quickly disappearing from sight. After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
+Finally! Patrick Star finished his big programming project and it seems to work perfectly! <i>“I think it’s done, Spongebob! I’ve been working on it for like… 23 minutes already!”</i> Patrick exclaims. He’s tested every case he could possibly think of; all two of them that came to his head. Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! <i>“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like Gary. A nice mixture of tabs and spaces. And no lines longer than 200 characters!”</i> says Spongebob. As Patrick is about to submit his pride and joy, Squidward pokes his head through the window and scoffs, <i>“don’t forget to check for memory leaks, idiot”</i>, quickly disappearing from sight. After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
 <i>“Let’s go catch those Jellyfish, Patrick!”</i> Spongebob yells happily.<br>
 <i>“Just a second Spongebob, I gotta check one last thing”</i> Patrick says bluntly.<br>
 
@@ -37,11 +37,12 @@ As inferred by the name, a scoped pointer will be deleted when it goes out of sc
 
 ###General Rules:
 To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
-1)	They cannot be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.
-2)	They cannot be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.
-3)	They CAN be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers
-4)	They CAN be reset: There is also a built in reset function which allows you to reset the pointer to whatever you wish, deleting the existing pointer.
-
+<ol>
+<li> They <b>CANNOT</b> be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.</li>
+<li> They <b>CANNOT</b> be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.</li>
+<li> They <b>CAN</b> be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers.</li>
+<li> They <b>CAN</b> be reset: There is also a built in reset function which allows you to reset the pointer to whatever you wish, deleting the existing pointer.</li>
+</ol>
 ###How to Declare:
 
 ```
