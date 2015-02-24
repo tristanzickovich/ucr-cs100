@@ -41,7 +41,7 @@ and <a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/intrusive_ptr.h
 We will focus mainly on scoped and shared_ptr here.  Here we go!
 
 ##Scoped_ptr
-###How its managed:
+###How it's managed:
 As inferred by the name, a scoped pointer will be deleted when it goes out of scope. Simply put, a scope can be viewed as everything in between at set of curly braces; for instance, everything inside a function has its own scope. Inside of a function (or class), any declared scoped pointers will be deleted when the function is destructed. 
 
 ###General Rules:
@@ -71,8 +71,10 @@ To maintain its proper functionality, there are a few rules that come along with
 	int main(){
 		boost::scoped_ptr<int> my_ints(new int);			//REF 4
 		boost::scoped_ptr<int> my_swap_ptr(new int);
+		boost::scoped_ptr<char> my_char(new char);
 		my_ints.swap(my_swap_ptr);							//REF 5
 		my_ints.reset(new int);								//REF 6
+		my_char.reset(new char);
 	}
 ```
 
@@ -95,6 +97,9 @@ Quick Notes (see above for visual):
 <li>The argument inside the parentheses: <code>new</code> and then the type of pointer. </li>
 </ul>
 
+##Shared Pointer
+###How It's Managed
+Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  Why? Say you have a class which contains a pointer as a member variable. In another function you create several objects of this class, which all need access to that pointer.  If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! The scoped pointer will be delete when when no object no longer owns it.
 
 TODO:
 
