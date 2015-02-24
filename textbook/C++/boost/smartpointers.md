@@ -56,27 +56,24 @@ To maintain its proper functionality, there are a few rules that come along with
 
 ```
 	#include <iostream>
-	#include <boost/scoped_ptr.hpp>					//REF 1
+	#include <boost/scoped_ptr.hpp>							//REF 1
 	using namespace std;
 		
 	class PointerDemo{
 		private:
-      			//declared as a class variable
 			boost::scoped_ptr<int> num_pointer(new int);    //REF 2
 		public:
-			//initialized in a constructor
-			PointerDemo()					//REF 3
+			PointerDemo()									//REF 3
 			  : num_pointer(new int)
 			{}
 	};	
 	
 	int main(){
-		//declared as a function variable
-		boost::scoped_ptr<int> my_ints(new int);		//REF 4
+		boost::scoped_ptr<int> my_ints(new int);			//REF 4
 		boost::scoped_ptr<int> my_swap_ptr(new int);
-		my_ints.swap(my_swap_ptr);  //swaps the implicit with explicit param	//REF 5
-		my_ints.reset(new int); //resets smart pointer		//REF 6
-		}
+		my_ints.swap(my_swap_ptr);							//REF 5
+		my_ints.reset(new int);								//REF 6
+	}
 ```
 
 The above code demonstrates declaration of scoped pointers. Use the references below:
