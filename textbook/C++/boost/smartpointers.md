@@ -81,12 +81,12 @@ To maintain its proper functionality, there are a few rules that come along with
 The above code demonstrates declaration of scoped pointers. Use the references below for brief explanation:
 
 <ol>
-<li>REF 1: Make sure to inlcude the <code>boost library</code> for the scoped pointer
-<li>REF 2: Scoped pointer declared as a (private) class variable
-<li>REF 3: Scoped pointer initialized in a constructor
-<li>REF 4: Scoped pointer declared as a function variable
-<li>REF 5: Built in <code>swap</code> function. It swaps the implicit(my_ints) with the explicit(my_swap_ptr) parameter
-<li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to a new pointer of the same data type.
+<li>REF 1: Make sure to inlcude the <code>boost library</code> for the scoped pointer.</li>
+<li>REF 2: Scoped pointer declared as a (private) class variable.</li>
+<li>REF 3: Scoped pointer initialized in a constructor.</li>
+<li>REF 4: Scoped pointer declared as a function variable.</li>
+<li>REF 5: Built in <code>swap</code> function. It swaps the implicit(my_ints) with the explicit(my_swap_ptr) parameter.</li>
+<li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to a new pointer of the same data type.</li>
 </ol>
 
 Quick Notes (see above for visual): 
@@ -104,8 +104,8 @@ Unlike the scoped pointer, the shared pointer is not deleted when an instance of
 ###General Rules:
 There are a few rules that go along with the shared pointer. 
 <ol>
-<li> They <b>CAN</b> be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.</li>
-<li> They <b>CAN</b> be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.</li>
+<li> They <b>CAN</b> be copied: you may set another shared pointer equal to your shared pointer</li>
+<li> They <b>CAN</b> be used inside containers: they may be used inside a container such as a vector</li>
 </ol>
 
 ##How To Declare:
@@ -131,6 +131,15 @@ There are a few rules that go along with the shared pointer.
 		PointerDemo three(my_ints);
 	}
 ```
+The above code demonstrates declaration of scoped pointers. Use the references below for brief explanation:
+
+<ol>
+<li>REF 1: Make sure to inlcude the <code>boost library</code> for the shared pointer</li>
+<li>REF 2: Shared pointer declared as a (private) class variable</li>
+<li>REF 3: Shared pointer initialized in a constructor for an object</li>
+<li>REF 4: Shared pointer declared as a function variable</li>
+<li>REF 5: Shared pointer passed as the explicit parameter to an object constructor</li>
+</ol>
 
 TODO:
 
