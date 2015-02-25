@@ -3,7 +3,7 @@
 ##Overview
 This tutorial covers smart pointers from the 
 [boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
-Smart pointers are useful becuase they help with memory managment, helping eliminate memore leaks.
+Smart pointers are useful becuase they help with memory managment, helping to eliminate memory leaks.
 They manage themselves, automatically deleting themselves when they are no longer needed.
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
 We'll begin with *why* and *where* you want to use smart pointers, and discusses some things to know before using them.
