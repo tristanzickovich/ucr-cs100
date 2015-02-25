@@ -200,15 +200,23 @@ The *scoped_array* and *shared_array* follow most of the same conventions as the
 You would use these instead of the pointer versions if you wished to have an array of the pointer. 
 They are used and declared the same way, and have the same functions.
 The main difference comes during destruction. 
-The destructor accounts for the pointer being an array, correctly deallocating memory (it calls `delete [] smart_array` rather than just `delete smart_array` as the pointer version would).
+The destructor accounts for the pointer being an array, correctly deallocating memory (it calls `delete [] smart_array` rather than just `delete smart_array` as the pointer version would).   
+For more info, [click here for *scoped_array*](http://flylib.com/books/en/1.437.1.24/1/)
+or [click here for *shared_array*](http://flylib.com/books/en/1.437.1.26/1/).
 
 **weak_ptr**
 A *weak pointer* is only used alongside *shared pointers*, providing mutual ownership with the *shared pointer*.
 It provides one key additional member function called `lock()`.
 A *weak pointer* calling this function will return a *shared pointer* (the *shared pointer* will be empty if no *shared pointer* objects remain).
-It is used to prevent accidental deletion of an object when you do not wish to do so.
+It is used to prevent accidental deletion of an object when you do not wish to do so.   
+For more info, [click here!](http://www.drdobbs.com/weak-pointers/184402026)
 
 **intrusive_ptr**
+The *intrusive pointer* acts similarly to the *shared pointer*, with one key difference.
+It directly calls a reference counter, which keeps track of the number of *intrusive pointers* in use.
+When intrusive pointers are freed, if the referece count drops to zero, the object it points to will be destroyed.
+It is mainly used to increase performance of a program.   
+For more info, [click here!](http://baptiste-wicht.com/posts/2011/11/boost-intrusive_ptr.html)
 
 ###Code Example
 Type code example here
