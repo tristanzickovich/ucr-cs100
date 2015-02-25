@@ -7,15 +7,15 @@ Then we'll jump into the details of `scoped pointers` followed by `shared pointe
 To wrap it up we will take a look at a coding example that uses what we cover.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
-Finally! <a href="http://spongebob.wikia.com/wiki/Patrick_Star" style="text-decoration:none" target="_blank">Patrick Star</a> finished his big programming project and it seems to work perfectly! 
-*“I think it’s done, <a href="http://spongebob.wikia.com/wiki/SpongeBob_SquarePants" style="text-decoration:none" target="_blank">SpongeBob</a>! 
+Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished his big programming project and it seems to work perfectly! 
+*“I think it’s done, [SpongeBob](http://spongebob.wikia.com/wiki/SpongeBob_SquarePants)! 
 I’ve been working on it for like… 23 minutes already!”* Patrick exclaims. 
 He’s tested every case he could possibly think of; all two of them that came to his head. 
 Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! 
-*“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like <a href="http://spongebob.wikia.com/wiki/Gary_the_Snail" style="text-decoration:none" target="_blank">Gary</a>. 
+*“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like [Gary](http://spongebob.wikia.com/wiki/Gary_the_Snail). 
 A nice mixture of tabs and spaces. 
 And no lines longer than 200 characters!”* says SpongeBob. 
-As Patrick is about to submit his pride and joy, <a href="http://spongebob.wikia.com/wiki/Squidward_Tentacles" style="text-decoration:none" target="_blank">Squidward</a> pokes his head through the window and scoffs, *“don’t forget to check for memory leaks, idiot”*, quickly disappearing from sight. 
+As Patrick is about to submit his pride and joy, [Squidward](http://spongebob.wikia.com/wiki/Squidward_Tentacles) pokes his head through the window and scoffs, *“don’t forget to check for memory leaks, idiot”*, quickly disappearing from sight. 
 After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
 *“Let’s go catch those Jellyfish, Patrick!”* SpongeBob yells happily.<br>
 *“Just a second SpongeBob, I gotta check one last thing”* Patrick says bluntly.<br>
@@ -26,13 +26,13 @@ Valgrind myBIGproject.out … tests … tests … tests … ENTER!<br>
 
 *“Aw Barnacles!”* Patrick cries. 
 He was so close that he could taste victory.  
-Valgrind smashed his hopes into nothing better than the <a href="http://spongebob.wikia.com/wiki/Chum_Bucket" style="text-decoration:none" target="_blank">Chum Bucket</a>. 
-Now he has to go back and manage all those pointers he used.  
+Valgrind smashed his hopes into nothing better than the [Chum Bucket](http://spongebob.wikia.com/wiki/Chum_Bucket). 
+Now he has to go back and manage all those pointers he used.
 Had he only taken the time to learn smart pointers. Tsk tsk.
 
 ##Why Use Smart Pointers?
 As Patrick learned, regular pointers (known as raw pointers) must be self-managed. 
-They’re like <a href="http://spongebob.wikia.com/wiki/Sheldon_J._Plankton" style="text-decoration:none" target="_blank">Plankton</a>: they must be closely monitored or they have to potential to cause major problems.
+They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): they must be closely monitored or they have to potential to cause major problems.
 In other words, when you create a raw pointers, you must delete them yourself explicitly in the program. 
 Forgetting to do so can cause major memory leaks! 
 Deleting them yourself may not seem like a big deal, but you must correctly decide when to do so, so you don’t ruin the rest of your program. 
@@ -63,22 +63,21 @@ Gasp! Which function actually owns it and is responsible for it?
 Ownership means a specific function “owns” the pointer and must delete it when appropriate. 
 If you need another function to delete the pointer when you’re done using it, you should use raw pointers.  
 For more detail and examples on ownership, 
-<a href="http://ericlavesson.blogspot.com/2013/03/c-ownership-semantics.html">click here!</a>
+[click here!](http://ericlavesson.blogspot.com/2013/03/c-ownership-semantics.html)
 
 
 ##Let’s Get Started!
 Now that the basics have been covered, let’s get to the 
-<a href="http://spongebob.wikia.com/wiki/Krabby_Patty" target="_blank">Krabby Patty</a> 
-of this tutorial! 
+[Krabby Patty](http://spongebob.wikia.com/wiki/Krabby_Patty) of this tutorial! 
 In total, boost contains six different smart pointers.  
 These include 
-<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_ptr.htm" target="_blank">scoped_ptr</a>,
-<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_ptr.htm" target="_blank">shared_ptr</a>, 
-<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_array.htm" target="_blank">scoped_array</a>, 
-<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_array.htm" target="_blank">shared_array</a>, 
-<a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/weak_ptr.htm" target="_blank">weak_ptr</a>, 
-and <a href="http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/intrusive_ptr.html" target="_blank">intrusive_ptr</a>. 
-We will focus mainly on scoped and shared_ptr here.  Here we go!
+[scoped_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_ptr.htm),
+[shared_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_ptr.htm), 
+[scoped_array](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_array.htm), 
+[shared_array](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_array.htm), 
+[weak_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/weak_ptr.htm), 
+and [intrusive_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/intrusive_ptr.html). 
+We will focus mainly on scoped and shared pointers here.  Here we go!
 
 ##Scoped_ptr
 ###How it's managed:
