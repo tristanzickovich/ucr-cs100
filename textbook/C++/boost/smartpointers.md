@@ -1,10 +1,11 @@
 #Smart Pointers C++
 
 ##Overview
-This tutorial covers smart pointers from the `boost library`.
+This tutorial covers smart pointers from the 
+[boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
 The main focus is on `scoped_ptr` and `shared_ptr`.
 It begins with *why* and *where* you would want to use smart pointers, and discusses some things to know before using them.
-Then it jumps into the details of `scoped pointers`, followed by `shared pointers`, and briefly brushes over the remaining smart pointers. 
+Then it jumps into the details of *scoped pointers*, followed by *shared pointers*, and briefly brushes over the remaining smart pointers. 
 To wrap it up a coding exmaple shows a use for these pointers.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
@@ -194,7 +195,20 @@ Use the references below for brief explanation:
 Write wrap up here
 
 ###Other Smart Pointers (A Brief Coverage)
-Write a couple sentences about the other smart pointers here.
+**scoped_array and shared_array**   
+The *scoped_array* and *shared_array* follow most of the same conventions as the *scoped_ptr* and *shared_pointer* respectively. 
+You would use these instead of the pointer versions if you wished to have an array of the pointer. 
+They are used and declared the same way, and have the same functions.
+The main difference comes during destruction. 
+The destructor accounts for the pointer being an array, correctly deallocating memory (it calls `delete [] smart_array` rather than just `delete smart_array` as the pointer version would).
+
+**weak_ptr**
+A *weak pointer* is only used alongside *shared pointers*, providing mutual ownership with the *shared pointer*.
+It provides one key additional member function called `lock()`.
+A *weak pointer* calling this function will return a *shared pointer* (the *shared pointer* will be empty if no *shared pointer* objects remain).
+It is used to prevent accidental deletion of an object when you do not wish to do so.
+
+**intrusive_ptr**
 
 ###Code Example
 Type code example here
