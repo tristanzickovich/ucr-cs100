@@ -2,29 +2,29 @@
 
 ##Overview
 This tutorial will cover smart pointers from the `boost library`. The main focus will be on `scoped_ptr` and `shared_ptr`.
-We'll begin with <i>why</i> and <i>where</i> you would want to use smart pointers, and discuss some things to know before using them.
+We'll begin with *why* and *where* you would want to use smart pointers, and discuss some things to know before using them.
 Then we'll jump into the details of `scoped pointers` followed by `shared pointers`, and briefly brush over the remaining smart pointers. 
 To wrap it up we will take a look at a coding example that uses what we cover.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 Finally! <a href="http://spongebob.wikia.com/wiki/Patrick_Star" style="text-decoration:none" target="_blank">Patrick Star</a> finished his big programming project and it seems to work perfectly! 
-<i>“I think it’s done, <a href="http://spongebob.wikia.com/wiki/SpongeBob_SquarePants" style="text-decoration:none" target="_blank">SpongeBob</a>! 
-I’ve been working on it for like… 23 minutes already!”</i> Patrick exclaims. 
+*“I think it’s done, <a href="http://spongebob.wikia.com/wiki/SpongeBob_SquarePants" style="text-decoration:none" target="_blank">SpongeBob</a>! 
+I’ve been working on it for like… 23 minutes already!”* Patrick exclaims. 
 He’s tested every case he could possibly think of; all two of them that came to his head. 
 Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! 
-<i>“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like <a href="http://spongebob.wikia.com/wiki/Gary_the_Snail" style="text-decoration:none" target="_blank">Gary</a>. 
+*“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like <a href="http://spongebob.wikia.com/wiki/Gary_the_Snail" style="text-decoration:none" target="_blank">Gary</a>. 
 A nice mixture of tabs and spaces. 
-And no lines longer than 200 characters!”</i> says SpongeBob. 
-As Patrick is about to submit his pride and joy, <a href="http://spongebob.wikia.com/wiki/Squidward_Tentacles" style="text-decoration:none" target="_blank">Squidward</a> pokes his head through the window and scoffs, <i>“don’t forget to check for memory leaks, idiot”</i>, quickly disappearing from sight. 
+And no lines longer than 200 characters!”* says SpongeBob. 
+As Patrick is about to submit his pride and joy, <a href="http://spongebob.wikia.com/wiki/Squidward_Tentacles" style="text-decoration:none" target="_blank">Squidward</a> pokes his head through the window and scoffs, *“don’t forget to check for memory leaks, idiot”*, quickly disappearing from sight. 
 After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
-<i>“Let’s go catch those Jellyfish, Patrick!”</i> SpongeBob yells happily.<br>
-<i>“Just a second SpongeBob, I gotta check one last thing”</i> Patrick says bluntly.<br>
+*“Let’s go catch those Jellyfish, Patrick!”* SpongeBob yells happily.<br>
+*“Just a second SpongeBob, I gotta check one last thing”* Patrick says bluntly.<br>
 
 Valgrind myBIGproject.out … tests … tests … tests … ENTER!<br>
-<b>Leak Summary:</b><br>
-<b>Definitely Lost: 150,486 bytes in 2 blocks!</b><br>
+**Leak Summary:**<br>
+**Definitely Lost: 150,486 bytes in 2 blocks!**<br>
 
-<i>“Aw Barnacles!”</i> Patrick cries. 
+*“Aw Barnacles!”* Patrick cries. 
 He was so close that he could taste victory.  
 Valgrind smashed his hopes into nothing better than the <a href="http://spongebob.wikia.com/wiki/Chum_Bucket" style="text-decoration:none" target="_blank">Chum Bucket</a>. 
 Now he has to go back and manage all those pointers he used.  
