@@ -6,7 +6,7 @@ This tutorial covers smart pointers from the
 The main focus is on `scoped_ptr` and `shared_ptr`.
 It begins with *why* and *where* you would want to use smart pointers, and discusses some things to know before using them.
 Then it jumps into the details of *scoped pointers*, followed by *shared pointers*, and briefly brushes over the remaining smart pointers. 
-To wrap it up a coding exmaple shows a use for these pointers.
+To wrap it up a coding example shows a use for these pointers.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished his big programming project and it seems to work perfectly! 
@@ -144,7 +144,8 @@ Unlike the scoped pointer, the shared pointer is not deleted when an instance of
 Why? Say you have a class which contains a pointer as a member variable. 
 In another function you create several objects of this class, all of which need access to that pointer.  
 If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! 
-The scoped pointer will be deleted when no object no longer owns it.
+The scoped pointer will be deleted when there are no remaining objects that own it.
+In other words, when the last object owning the pointer is destroyed.
 
 ###General Rules:
 There are a few rules that go along with the shared pointer. 
@@ -214,7 +215,7 @@ For more info, [click here!](http://www.drdobbs.com/weak-pointers/184402026)
 **intrusive_ptr**
 The *intrusive pointer* acts similarly to the *shared pointer*, with one key difference.
 It directly calls a reference counter, which keeps track of the number of *intrusive pointers* in use.
-When intrusive pointers are freed, if the referece count drops to zero, the object it points to will be destroyed.
+When intrusive pointers are freed, if the reference count drops to zero, the object it points to will be destroyed.
 It is mainly used to increase performance of a program.   
 For more info, [click here!](http://baptiste-wicht.com/posts/2011/11/boost-intrusive_ptr.html)
 
