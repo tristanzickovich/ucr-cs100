@@ -87,12 +87,12 @@ Inside of a function (or class), any declared scoped pointers will be deleted wh
 
 ###General Rules:
 To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
-<ol>
-<li> They <b>CANNOT</b> be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.</li>
-<li> They <b>CANNOT</b> be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.</li>
-<li> They <b>CAN</b> be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers.</li>
-<li> They <b>CAN</b> be reset: There is also a built in reset function which allows you to reset the pointer to another smart pointer of the same data type, deleting the existing pointer.</li>
-</ol>
+
+1. They **CANNOT** be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.
+2. They **CANNOT** be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.
+3. They **CAN** be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers.
+4. They **CAN** be reset: There is also a built in reset function which allows you to reset the pointer to another smart pointer of the same data type, deleting the existing pointer.
+
 ###How to Declare:
 
 ```
@@ -122,22 +122,19 @@ To maintain its proper functionality, there are a few rules that come along with
 The above code demonstrates declaration of scoped pointers. 
 Use the references below for brief explanation:
 
-<ol>
-<li>REF 1: Make sure to include the <code>boost library</code> for the scoped pointer.</li>
-<li>REF 2: Scoped pointer declared as a (private) class variable.</li>
-<li>REF 3: Scoped pointer initialized in a constructor.</li>
-<li>REF 4: Scoped pointer declared as a function variable.</li>
-<li>REF 5: Built in <code>swap</code> function. It swaps the implicit (my_ints) with the explicit (my_swap_ptr) parameter.</li>
-<li>REF 6: Built in <code>reset</code> function. It resets the smart pointer to a new pointer of the same data type.</li>
-</ol>
+1. REF 1: Make sure to include the `boost library` for the scoped pointer.
+2. REF 2: Scoped pointer declared as a (private) class variable.
+3. REF 3: Scoped pointer initialized in a constructor.
+4. REF 4: Scoped pointer declared as a function variable.
+5. REF 5: Built in `swap` function. It swaps the implicit (`my_ints`) with the explicit (`my_swap_ptr`) parameter.
+6. REF 6: Built in `reset` function. It resets the smart pointer to a new pointer of the same data type.
 
 ###Quick Notes (see above for visual): 
-<ul>
-<li>Determine where you wish to declare your pointer. </li>
-<li>Declare the scoped pointer as you would a vector, except with <code>boost::</code> prepended, and an argument after in parentheses.</li>
-<li>The pointer type goes between the angle brackets. </li>
-<li>The argument inside the parentheses: <code>new</code> and then the type of pointer. </li>
-</ul>
+
+* Determine where you wish to declare your pointer.
+* Declare the scoped pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.
+* The pointer type goes between the angle brackets.
+* The argument inside the parentheses: `new` and then the type of pointer.
 
 ##Shared Pointer
 ###How It's Managed
@@ -149,10 +146,9 @@ The scoped pointer will be deleted when no object no longer owns it.
 
 ###General Rules:
 There are a few rules that go along with the shared pointer. 
-<ol>
-<li> They <b>CAN</b> be copied: you may set another shared pointer equal to your shared pointer</li>
-<li> They <b>CAN</b> be used inside containers: they may be used inside a container such as a vector</li>
-</ol>
+
+1. They **CAN** be copied: you may set another shared pointer equal to your shared pointer.
+2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
 
 ##How To Declare:
 
@@ -180,21 +176,18 @@ There are a few rules that go along with the shared pointer.
 The above code demonstrates declaration of scoped pointers. 
 Use the references below for brief explanation:
 
-<ol>
-<li>REF 1: Make sure to include the <code>boost library</code> for the shared pointer</li>
-<li>REF 2: Shared pointer declared as a (private) class variable</li>
-<li>REF 3: Shared pointer initialized in a constructor for an object</li>
-<li>REF 4: Shared pointer declared as a function variable</li>
-<li>REF 5: Shared pointer passed as the explicit parameter to an object constructor</li>
-</ol>
+1. REF 1: Make sure to include the `boost library` for the shared pointer.
+2. REF 2: Shared pointer declared as a (private) class variable.
+3. REF 3: Shared pointer initialized in a constructor for an object.
+4. REF 4: Shared pointer declared as a function variable.
+5. REF 5: Shared pointer passed as the explicit parameter to an object constructor.
 
 ###Quick Notes (see above for visual): 
-<ul>
-<li>Determine where you wish to declare your pointer. </li>
-<li>Declare the shared pointer as you would a vector, except with <code>boost::</code> prepended, and an argument after in parentheses.</li>
-<li>The pointer type goes between the angle brackets. </li>
-<li>The argument inside the parentheses: <code>new</code> and then the type of pointer. </li>
-</ul>
+
+* Determine where you wish to declare your pointer.
+* Declare the shared pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.
+* The pointer type goes between the angle brackets.
+* The argument inside the parentheses: <code>new</code> and then the type of pointer.
 
 ###Wrap-Up
 Write wrap up here
