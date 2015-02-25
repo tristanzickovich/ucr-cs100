@@ -17,16 +17,16 @@ A nice mixture of tabs and spaces.
 And no lines longer than 200 characters!”* says SpongeBob. 
 As Patrick is about to submit his pride and joy, [Squidward](http://spongebob.wikia.com/wiki/Squidward_Tentacles) pokes his head through the window and scoffs, *“don’t forget to check for memory leaks, idiot”*, quickly disappearing from sight. 
 After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
-*“Let’s go catch those Jellyfish, Patrick!”* SpongeBob yells happily.<br>
-*“Just a second SpongeBob, I gotta check one last thing”* Patrick says bluntly.<br>
+*“Let’s go catch those Jellyfish, Patrick!”* SpongeBob yells happily.   
+*“Just a second SpongeBob, I gotta check one last thing”* Patrick says bluntly.   
 
-Valgrind myBIGproject.out … tests … tests … tests … ENTER!<br>
-**Leak Summary:**<br>
-**Definitely Lost: 150,486 bytes in 2 blocks!**<br>
+Valgrind myBIGproject.out … tests … tests … tests … ENTER!   
+**Leak Summary:**   
+**Definitely Lost: 150,486 bytes in 2 blocks!**   
 
-*“Aw Barnacles!”* Patrick cries. 
-He was so close that he could taste victory.  
-Valgrind smashed his hopes into nothing better than the [Chum Bucket](http://spongebob.wikia.com/wiki/Chum_Bucket). 
+*“Aw Barnacles!”* Patrick cries.
+He was so close that he could taste victory.
+Valgrind smashed his hopes into nothing better than the [Chum Bucket](http://spongebob.wikia.com/wiki/Chum_Bucket).
 Now he has to go back and manage all those pointers he used.
 Had he only taken the time to learn smart pointers. Tsk tsk.
 
