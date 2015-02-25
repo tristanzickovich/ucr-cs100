@@ -3,10 +3,12 @@
 ##Overview
 This tutorial covers smart pointers from the 
 [boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
-The main focus is on `scoped_ptr` and `shared_ptr`.
-It begins with *why* and *where* you would want to use smart pointers, and discusses some things to know before using them.
-Then it jumps into the details of *scoped pointers*, followed by *shared pointers*, and briefly brushes over the remaining smart pointers. 
-To wrap it up a coding example shows a use for these pointers.
+Smart pointers are useful becuase they help with memory managment, helping eliminate memore leaks.
+They manage themselves, automatically deleting themselves when they are no longer needed.
+In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
+We'll begin with *why* and *where* you want to use smart pointers, and discusses some things to know before using them.
+Then we'll jumps into the details of *scoped pointers*, followed by *shared pointers*, and briefly brush over the remaining smart pointers in the *boost library*. 
+To wrap it up we'll take a look at a C++ coding example that uses some of what's covered.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished his big programming project and it seems to work perfectly! 
