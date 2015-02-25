@@ -6,7 +6,7 @@ This tutorial covers smart pointers from the
 Smart pointers are useful becuase they help with memory managment, helping to eliminate memory leaks.
 They manage themselves, automatically deleting themselves when they are no longer needed.
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
-We'll begin with *why* and *where* you want to use smart pointers, and discusses some things to know before using them.
+We'll begin with *why* and *where* you want to use smart pointers, and discuss some things to know before using them.
 Then we'll jumps into the details of *scoped pointers*, followed by *shared pointers*, and briefly brush over the remaining smart pointers in the *boost library*. 
 To wrap it up we'll take a look at a C++ coding example that uses some of what's covered.
 
@@ -24,7 +24,7 @@ After all the time he’s put into it he wants to at least run valgrind and cppc
 *“Let’s go catch those Jellyfish, Patrick!”* SpongeBob yells happily.   
 *“Just a second SpongeBob, I gotta check one last thing”* Patrick says bluntly.   
 
-Valgrind myBIGproject.out … tests … tests … tests … ENTER!   
+valgrind myBIGproject.out … tests … tests … tests … ENTER!   
 **Leak Summary:**   
 **Definitely Lost: 150,486 bytes in 2 blocks!**   
 
@@ -49,24 +49,25 @@ You will choose which of the smart pointers to use based on the circumstance.
 These aspects will be discussed under each individual smart pointer’s section.
 
 ##Before Getting Started
-Smart pointers are a part of the Boost library.  
-To use them you must include the boost library in your code, or prepend `boost::` in front of your pointer declaration. 
+Smart pointers are a part of the boost library.  
+To use them you must include the boost library in your code, and prepend `boost::` in front of your pointer declaration. 
 Specific examples will be shown with each pointer later.  
-Also, these pointers are a part of C++ 11. When compiling your code, you must include the C++ 11 flag:
-If using UCR’s servers, you must enter the following command to enable the C++ 11 settings for the compiler:<br>
-`source	     /opt/rh/devtoolset-2/enable`<br>
-After this (or if using another system that supports compiling with C++ 11), when compiling use the following format:<br>
+Also, these pointers are a part of C++ 11. When compiling your code, you must include the C++ 11 flag.  
+If using UCR’s servers, you must enter the following command to enable the C++ 11 settings for the compiler:   
+`source	     /opt/rh/devtoolset-2/enable`   
+You only need to enter this once and it will work for the remainder of your time logged into the server.   
+After this (or if using another system that supports compiling with C++ 11), when compiling use the following format:   
 `g++ -std=c++11 yourfile.cpp`
 	
 ##Should I Use Smart Pointers?
-As a rule of thumb, smart pointers should be used when there is ownership of the object. 
-To give an idea of ownership, say you have a program that has many functions.  
-You declare your pointer in one of them.  
-But two functions point to that same memory. 
-Gasp! Which function actually owns it and is responsible for it? 
-Ownership means a specific function “owns” the pointer and must delete it when appropriate. 
-If you need another function to delete the pointer when you’re done using it, you should use raw pointers.  
-For more detail and examples on ownership, 
+As a rule of thumb, smart pointers should be used when there is ownership involved with the object you're using them with.
+To give an idea of ownership, say you have a program that has many functions.
+You declare your pointer in one of them.
+But two functions use a pointer to that same memory location.
+Gasp! Which function actually owns it and is responsible for it?
+Ownership means a specific function “owns” the pointer and must delete it when appropriate.
+If there is no instance of ownership, you should use raw pointers instead.  
+For more detail and examples of ownership, 
 [click here!](http://ericlavesson.blogspot.com/2013/03/c-ownership-semantics.html)
 
 
@@ -143,9 +144,9 @@ Use the references below for brief explanation:
 ##Shared Pointer
 ###How It's Managed
 Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  
-Why? Say you have a class which contains a pointer as a member variable. 
-In another function you create several objects of this class, all of which need access to that pointer.  
-If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! 
+Why? Say you have a class which contains a pointer as a member variable.
+In another function you create several objects of this class, all of which need access to that pointer.
+If it were to get deleted when one of the objects goes out of scope, your other objects would have no pointer to use, causing a problem!
 The shared pointer will be deleted when there are no remaining objects that own it (when the last object owning the pointer is destroyed).
 
 ###General Rules:
@@ -172,46 +173,48 @@ There are a few rules that go along with the shared pointer.
 	
 	int main(){
 		boost::shared_ptr<int> my_ints(new int);					//REF 4
-		PointerDemo one(my_ints);									//REF 5
+		typedef vector< boost::shared_ptr<int> > my_int_vec;		//REF 5
+		PointerDemo one(my_ints);									//REF 6
 		PointerDemo two(my_ints);
 		PointerDemo three(my_ints);
 	}
 ```
-The above code demonstrates declaration of scoped pointers. 
-Use the references below for brief explanation:
+The above code demonstrates declaration of scoped pointers.
+Use the references below for a brief explanation:
 
 1. REF 1: Make sure to include the `boost library` for the shared pointer.
 2. REF 2: Shared pointer declared as a (private) class variable.
 3. REF 3: Shared pointer initialized in a constructor for an object.
 4. REF 4: Shared pointer declared as a function variable.
-5. REF 5: Shared pointer passed as the explicit parameter to an object constructor.
+5. REF 5: Vector of shared pointers declaration
+6. REF 6: Shared pointer passed as the explicit parameter to an object constructor.
 
 ###Quick Notes (see above for visual): 
 
 * Determine where you wish to declare your pointer.
 * Declare the shared pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.
 * The pointer type goes between the angle brackets.
-* The argument inside the parentheses: <code>new</code> and then the type of pointer.
+* The argument inside the parentheses: `new` and then the type of pointer.
 
 ###Other Smart Pointers (A Brief Coverage)
 **scoped_array and shared_array**   
 The *scoped_array* and *shared_array* follow most of the same conventions as the *scoped_ptr* and *shared_pointer* respectively. 
-You would use these instead of the pointer versions if you wished to have an array of the pointer. 
-They are used and declared the same way, and have the same functions.
+You use the array version instead of the pointer version if you wish to have an array of the pointer.
+They are used and declared the same way, and have the same member functions.
 The main difference comes during destruction. 
-The destructor accounts for the pointer being an array, correctly deallocating memory (it calls `delete [] smart_array` rather than just `delete smart_array` as the pointer version would).   
+The destructor accounts for the pointer being an array, correctly deallocating memory (it calls `delete [] smart_array` rather than `delete smart_array` as the pointer version would).   
 For more info, [click here for *scoped_array*](http://flylib.com/books/en/1.437.1.24/1/)
 or [click here for *shared_array*](http://flylib.com/books/en/1.437.1.26/1/).
 
-**weak_ptr**
-A *weak pointer* is only used alongside *shared pointers*, providing mutual ownership with the *shared pointer*.
+**weak_ptr**   
+A *weak pointer* is *only* used alongside *shared pointers*, providing mutual ownership with the *shared pointer*.
 It provides one key additional member function called `lock()`.
-A *weak pointer* calling this function will return a *shared pointer* (the *shared pointer* will be empty if no *shared pointer* objects remain).
-It is used to prevent accidental deletion of an object when you do not wish to do so.   
+A *weak pointer* calling `lock()` will return a *shared pointer* (the *shared pointer* returned will be empty if no *shared pointer* objects remain).
+It is used to prevent accidental deletion of an object.   
 For more info, [click here!](http://www.drdobbs.com/weak-pointers/184402026)
 
-**intrusive_ptr**
-The *intrusive pointer* acts similarly to the *shared pointer*, with one key difference.
+**intrusive_ptr**   
+The *intrusive pointer* acts quite similarly to a *shared pointer*, with one key difference.
 It directly calls a reference counter, which keeps track of the number of *intrusive pointers* in use.
 When intrusive pointers are freed, if the reference count drops to zero, the object it points to will be destroyed.
 It is mainly used to increase performance of a program.   
