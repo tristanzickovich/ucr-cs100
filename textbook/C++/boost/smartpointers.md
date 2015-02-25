@@ -144,8 +144,7 @@ Unlike the scoped pointer, the shared pointer is not deleted when an instance of
 Why? Say you have a class which contains a pointer as a member variable. 
 In another function you create several objects of this class, all of which need access to that pointer.  
 If it were to delete when one of the instances of the object goes out of scope, your other objects would have no pointer to use, causing a problem! 
-The scoped pointer will be deleted when there are no remaining objects that own it.
-In other words, when the last object owning the pointer is destroyed.
+The shared pointer will be deleted when there are no remaining objects that own it (when the last object owning the pointer is destroyed).
 
 ###General Rules:
 There are a few rules that go along with the shared pointer. 
@@ -191,9 +190,6 @@ Use the references below for brief explanation:
 * Declare the shared pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.
 * The pointer type goes between the angle brackets.
 * The argument inside the parentheses: <code>new</code> and then the type of pointer.
-
-###Wrap-Up
-Write wrap up here
 
 ###Other Smart Pointers (A Brief Coverage)
 **scoped_array and shared_array**   
