@@ -3,12 +3,12 @@
 ##Overview
 This tutorial covers smart pointers from the 
 [boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
-Smart pointers are useful becuase they help with memory managment, helping to eliminate memory leaks.
+Smart pointers are useful becuase they help with memory managment, helping eliminate memory leaks.
 They manage themselves, automatically deleting themselves when they are no longer needed.
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
 We'll begin with *why* and *where* you want to use smart pointers, and discuss some things to know before using them.
-Then we'll jumps into the details of *scoped pointers*, followed by *shared pointers*, and briefly brush over the remaining smart pointers in the *boost library*. 
-To wrap it up we'll take a look at a C++ coding example that uses some of what's covered.
+Then we'll jump into the details of *scoped pointers*, followed by *shared pointers*, and briefly touch upon the remaining smart pointers in the *boost library*. 
+To wrap it up we'll take a look at a C++ coding example that uses some of what was covered.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished his big programming project and it seems to work perfectly! 
@@ -43,8 +43,7 @@ Deleting them yourself may not seem like a big deal, but you must correctly deci
 It’s also an easy thing to forget to do, which will cause you much hassle later on (like poor Patrick!).  
 With smart pointers, the cleanup is done for you! 
 That means you don’t have to determine where to place the delete! 
-A huge benefit of this is if your program unexpectedly crashes before your program has a chance to deallocate memory, smart pointers will take care of it for you!
-Each smart pointer has a unique set of instructions that determines when it will be deleted.  
+Each smart pointer has a unique set of instructions that determine when it will be deleted.  
 You will choose which of the smart pointers to use based on the circumstance. 
 These aspects will be discussed under each individual smart pointer’s section.
 
@@ -62,8 +61,7 @@ After this (or if using another system that supports compiling with C++ 11), whe
 ##Should I Use Smart Pointers?
 As a rule of thumb, smart pointers should be used when there is ownership involved with the object you're using them with.
 To give an idea of ownership, say you have a program that has many functions.
-You declare your pointer in one of them.
-But two functions use a pointer to that same memory location.
+You declare your pointer in one of them, but two functions use a pointer to that same memory location.
 Gasp! Which function actually owns it and is responsible for it?
 Ownership means a specific function “owns” the pointer and must delete it when appropriate.
 If there is no instance of ownership, you should use raw pointers instead.  
@@ -87,7 +85,8 @@ We will focus mainly on scoped and shared pointers here.  Here we go!
 ##Scoped_ptr
 ###How it's managed:
 As inferred by the name, a scoped pointer will be deleted when it goes out of scope. 
-Simply put, a scope can be viewed as everything in between at set of curly braces; for instance, everything inside a function has its own scope. 
+Simply put, a scope can be viewed as everything in between at set of curly braces.
+For instance, everything inside a function has its own scope. 
 Inside of a function (or class), any declared scoped pointers will be deleted when the function is destructed. 
 
 ###General Rules:
@@ -102,37 +101,35 @@ To maintain its proper functionality, there are a few rules that come along with
 
 ```
 	#include <iostream>
-	#include <boost/scoped_ptr.hpp>							//REF 1
+	//Make sure to include the `boost library` for the scoped pointer
+	#include <boost/scoped_ptr.hpp>
 	using namespace std;
 		
 	class PointerDemo{
 		private:
-			boost::scoped_ptr<int> num_pointer			    //REF 2
+			//Scoped pointer declared as a (private) class variable
+			boost::scoped_ptr<int> num_pointer
 		public:
-			PointerDemo()									//REF 3
+			//Scoped pointer initialized in a constructor
+			PointerDemo()
 			  : num_pointer(new int)
 			{}
 	};	
 	
 	int main(){
-		boost::scoped_ptr<int> my_ints(new int);			//REF 4
+		//Scoped pointer declared as a function variable
+		boost::scoped_ptr<int> my_ints(new int);	
 		boost::scoped_ptr<int> my_swap_ptr(new int);
 		boost::scoped_ptr<char> my_char(new char);
-		my_ints.swap(my_swap_ptr);							//REF 5
-		my_ints.reset(new int);								//REF 6
+		//Built in `swap` function. It swaps the implicit (`my_ints`) with the explicit (`my_swap_ptr`) parameter
+		my_ints.swap(my_swap_ptr);	
+		//Built in `reset` function. It resets the smart pointer to a new pointer of the same data type
+		my_ints.reset(new int);		
 		my_char.reset(new char);
 	}
 ```
 
 The above code demonstrates declaration of scoped pointers. 
-Use the references below for brief explanation:
-
-1. REF 1: Make sure to include the `boost library` for the scoped pointer.
-2. REF 2: Scoped pointer declared as a (private) class variable.
-3. REF 3: Scoped pointer initialized in a constructor.
-4. REF 4: Scoped pointer declared as a function variable.
-5. REF 5: Built in `swap` function. It swaps the implicit (`my_ints`) with the explicit (`my_swap_ptr`) parameter.
-6. REF 6: Built in `reset` function. It resets the smart pointer to a new pointer of the same data type.
 
 ###Quick Notes (see above for visual): 
 
@@ -159,35 +156,33 @@ There are a few rules that go along with the shared pointer.
 
 ```
 	#include <iostream>
-	#include <boost/shared_ptr.hpp>									//REF 1
+	//Make sure to include the `boost library` for the shared pointer
+	#include <boost/shared_ptr.hpp>
 	using namespace std;
 		
 	class PointerDemo{
 		private:
-			boost::shared_ptr<int> num_pointer;				    	//REF 2
+			//Shared pointer declared as a (private) class variable
+			boost::shared_ptr<int> num_pointer;
 		public:
-			PointerDemo(boost::shared_ptr<int> num_ptr)				//REF 3
+			//Shared pointer initialized in a constructor for an object
+			PointerDemo(boost::shared_ptr<int> num_ptr)
 			  : num_pointer(new int)
 			{}
 	};	
 	
 	int main(){
-		boost::shared_ptr<int> my_ints(new int);					//REF 4
-		typedef vector< boost::shared_ptr<int> > my_int_vec;		//REF 5
-		PointerDemo one(my_ints);									//REF 6
+		//Shared pointer declared as a function variable
+		boost::shared_ptr<int> my_ints(new int);
+		//Vector of shared pointers declaration
+		typedef vector< boost::shared_ptr<int> > my_int_vec;
+		//Shared pointer passed as the explicit parameter to an object constructor
+		PointerDemo one(my_ints);
 		PointerDemo two(my_ints);
 		PointerDemo three(my_ints);
 	}
 ```
 The above code demonstrates declaration of scoped pointers.
-Use the references below for a brief explanation:
-
-1. REF 1: Make sure to include the `boost library` for the shared pointer.
-2. REF 2: Shared pointer declared as a (private) class variable.
-3. REF 3: Shared pointer initialized in a constructor for an object.
-4. REF 4: Shared pointer declared as a function variable.
-5. REF 5: Vector of shared pointers declaration
-6. REF 6: Shared pointer passed as the explicit parameter to an object constructor.
 
 ###Quick Notes (see above for visual): 
 
@@ -210,7 +205,7 @@ or [click here for *shared_array*](http://flylib.com/books/en/1.437.1.26/1/).
 A *weak pointer* is *only* used alongside *shared pointers*, providing mutual ownership with the *shared pointer*.
 It provides one key additional member function called `lock()`.
 A *weak pointer* calling `lock()` will return a *shared pointer* (the *shared pointer* returned will be empty if no *shared pointer* objects remain).
-It is used to prevent accidental deletion of an object.   
+`lock()` is used to prevent accidental deletion of an object.   
 For more info, [click here!](http://www.drdobbs.com/weak-pointers/184402026)
 
 **intrusive_ptr**   
