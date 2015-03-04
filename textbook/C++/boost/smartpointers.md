@@ -101,7 +101,7 @@ To maintain its proper functionality, there are a few rules that come along with
 
 ```
 	#include <iostream>
-	//Make sure to include the `boost library` for the scoped pointer
+	//Make sure to include the boost library for the scoped pointer
 	#include <boost/scoped_ptr.hpp>
 	using namespace std;
 		
@@ -121,9 +121,9 @@ To maintain its proper functionality, there are a few rules that come along with
 		boost::scoped_ptr<int> my_ints(new int);	
 		boost::scoped_ptr<int> my_swap_ptr(new int);
 		boost::scoped_ptr<char> my_char(new char);
-		//Built in `swap` function. It swaps the implicit (`my_ints`) with the explicit (`my_swap_ptr`) parameter
+		//Built in swap function. It swaps the implicit (my_ints) with the explicit (my_swap_ptr) parameter
 		my_ints.swap(my_swap_ptr);	
-		//Built in `reset` function. It resets the smart pointer to a new pointer of the same data type
+		//Built in reset function. It resets the smart pointer to a new pointer of the same data type
 		my_ints.reset(new int);		
 		my_char.reset(new char);
 	}
@@ -156,7 +156,7 @@ There are a few rules that go along with the shared pointer.
 
 ```
 	#include <iostream>
-	//Make sure to include the `boost library` for the shared pointer
+	//Make sure to include the boost library for the shared pointer
 	#include <boost/shared_ptr.hpp>
 	using namespace std;
 		
