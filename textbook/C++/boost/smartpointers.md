@@ -90,15 +90,26 @@ They're easy to declare, leaving no reason not to use them where applicable. Let
 	}
 ```
 ##Before Getting Started
-Smart pointers are a part of the boost library.  
+Smart pointers are a part of the boost library.
+In total, boost contains six different smart pointers.  
+These include 
+[scoped_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_ptr.htm),
+[shared_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_ptr.htm), 
+[scoped_array](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_array.htm), 
+[shared_array](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_array.htm), 
+[weak_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/weak_ptr.htm), 
+and [intrusive_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/intrusive_ptr.html). 
+We will focus mainly on scoped and shared pointers here.   
 To use them you must include the boost library in your code, and prepend `boost::` in front of your pointer declaration. 
 Specific examples will be shown with each pointer later.  
-Also, these pointers are a part of C++ 11. When compiling your code, you must include the C++ 11 flag.  
+Being part of C++ 11, when compiling your code you must include the C++ 11 flag.  
 If using UCR’s servers, you must enter the following command to enable the C++ 11 settings for the compiler:   
 `source	     /opt/rh/devtoolset-2/enable`   
 You only need to enter this once and it will work for the remainder of your time logged into the server.   
 After this (or if using another system that supports compiling with C++ 11), when compiling use the following format:   
 `g++ -std=c++11 yourfile.cpp`
+
+
 	
 ##Should I Use Smart Pointers?
 As a rule of thumb, smart pointers should be used when there is ownership involved with the object you're using them with.
@@ -109,20 +120,6 @@ Ownership means a specific function “owns” the pointer and must delete it wh
 If there is no instance of ownership, you should use raw pointers instead.  
 For more detail and examples of ownership, 
 [click here!](http://ericlavesson.blogspot.com/2013/03/c-ownership-semantics.html)
-
-
-##Let’s Get Started!
-Now that the basics have been covered, let’s get to the 
-[Krabby Patty](http://spongebob.wikia.com/wiki/Krabby_Patty) of this tutorial! 
-In total, boost contains six different smart pointers.  
-These include 
-[scoped_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_ptr.htm),
-[shared_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_ptr.htm), 
-[scoped_array](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/scoped_array.htm), 
-[shared_array](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/shared_array.htm), 
-[weak_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/weak_ptr.htm), 
-and [intrusive_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/intrusive_ptr.html). 
-We will focus mainly on scoped and shared pointers here.  Here we go!
 
 ##Scoped_ptr
 ###How it's managed:
