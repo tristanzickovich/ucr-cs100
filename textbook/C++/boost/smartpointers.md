@@ -8,7 +8,6 @@ They manage themselves, automatically deleting themselves when they are no longe
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
 We'll begin with *why* and *where* you want to use smart pointers, and discuss some things to know before using them.
 Then we'll jump into the details of *scoped pointers*, followed by *shared pointers*, and briefly touch upon the remaining smart pointers in the *boost library*. 
-To wrap it up we'll take a look at a C++ coding example that uses some of what was covered.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished his big programming project and it seems to work perfectly! 
@@ -35,9 +34,9 @@ Now he has to go back and manage all those pointers he used.
 Had he only taken the time to learn smart pointers. Tsk tsk.
 
 ##Why Use Smart Pointers?
-As Patrick learned, regular pointers (known as raw pointers) must be self-managed. 
-They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): they must be closely monitored or they have to potential to cause major problems.
-In other words, when you create a raw pointers, you must delete them yourself explicitly in the program. 
+As Patrick learned, regular pointers (raw pointers) must be self-managed. 
+They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): must be closely monitored or can cause major problems.
+In other words, when you create raw pointers, you must delete them yourself explicitly in the program. 
 Forgetting to do so can cause major memory leaks! 
 Deleting them yourself may not seem like a big deal, but you must correctly decide when to do so, so you don’t ruin the rest of your program. 
 It’s also an easy thing to forget to do, which will cause you much hassle later on (like poor Patrick!).  
@@ -45,7 +44,7 @@ With smart pointers, the cleanup is done for you!
 That means you don’t have to determine where to place the delete! 
 Each smart pointer has a unique set of instructions that determine when it will be deleted.  
 You will choose which of the smart pointers to use based on the circumstance. 
-Lastly, they're just as easy to declare as raw pointers! Let's take a look at scoped and shared pointer declarations:
+They're easy to declare, leaving no reason not to use them where applicable. Let's take a look at scoped and shared pointer declarations:
 
 ```
 	#include <iostream>
@@ -140,19 +139,6 @@ To maintain its proper functionality, there are a few rules that come along with
 3. They **CAN** be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers.
 4. They **CAN** be reset: There is also a built in reset function which allows you to reset the pointer to another smart pointer of the same data type, deleting the existing pointer.
 
-###How to Declare:
-
-
-
-The above code demonstrates declaration of scoped pointers. 
-
-###Quick Notes (see above for visual): 
-
-* Determine where you wish to declare your pointer.
-* Declare the scoped pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.
-* The pointer type goes between the angle brackets.
-* The argument inside the parentheses: `new` and then the type of pointer.
-
 ##Shared Pointer
 ###How It's Managed
 Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  
@@ -167,11 +153,7 @@ There are a few rules that go along with the shared pointer.
 1. They **CAN** be copied: you may set another shared pointer equal to your shared pointer.
 2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
 
-##How To Declare:
-
-The above code demonstrates declaration of scoped pointers.
-
-###Quick Notes (see above for visual): 
+###Quick Notes For Using Either Pointer: 
 
 * Determine where you wish to declare your pointer.
 * Declare the shared pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.
