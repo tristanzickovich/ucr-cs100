@@ -4,7 +4,7 @@
 This tutorial covers smart pointers from the 
 [boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
 Smart pointers are useful becuase they help with memory managment, helping eliminate memory leaks.
-They manage themselves, automatically deleting themselves when they are no longer needed.
+They're self-managed, automatically deleting themselves when they are no longer needed.
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
 We'll begin with *why* and *where* you want to use smart pointers, and discuss some things to know before using them.
 Then we'll jump into the details of *scoped pointers*, followed by *shared pointers*, and briefly touch upon the remaining smart pointers in the *boost library*. 
@@ -35,11 +35,9 @@ As Patrick learned, regular pointers (raw pointers) must be self-managed.
 They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): must be closely monitored or can cause major problems.
 In other words, when you create raw pointers, you must delete them yourself explicitly in the program. 
 Forgetting to do so can cause major memory leaks! 
-Deleting them yourself may not seem like a big deal, but you must correctly decide when to do so, so you don’t ruin the rest of your program. 
-With smart pointers, the cleanup is done for you! 
-That means you don’t have to determine where to place the delete! 
+Deleting them yourself may not seem like a big deal, but doing so incorrectly can ruin the rest of your program. 
+With smart pointers, the cleanup is done for you, meaning you don’t have to determine where to place the delete! 
 Each smart pointer has a unique set of instructions that determine when it will be deleted.  
-You will choose which of the smart pointers to use based on the circumstance. 
 They're easy to declare, leaving no reason not to use them where applicable. Let's take a look at scoped and shared pointer declarations:
 
 ```
@@ -96,19 +94,18 @@ These include
 [weak_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/weak_ptr.htm), 
 and [intrusive_ptr](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/intrusive_ptr.html). 
 We will focus mainly on scoped and shared pointers here.   
-To use them you must include the boost library in your code, and prepend `boost::` in front of your pointer declaration. 
-Specific examples will be shown with each pointer later.  
+To use them you must include the boost library in your code, and prepend `boost::` in front of your pointer declaration, as shown above.
 Being part of C++ 11, when compiling your code you must include the C++ 11 flag.  
 If using UCR’s servers, you must enter the following command to enable the C++ 11 settings for the compiler:   
 `source	     /opt/rh/devtoolset-2/enable`   
-You only need to enter this once and it will work for the remainder of your time logged into the server.   
-After this (or if using another system that supports compiling with C++ 11), when compiling use the following format:   
+You only need to enter this once and it will work for the remainder of your login session.   
+After this (or if using another system that supports compiling with C++ 11), compile using the following format:   
 `g++ -std=c++11 yourfile.cpp`
 
 
 	
 ##Should I Use Smart Pointers?
-As a rule of thumb, smart pointers should be used when there is ownership involved with the object you're using them with.
+As a rule of thumb, smart pointers should be used when there is ownership involved.
 To give an idea of ownership, say you have a program that has many functions.
 You declare your pointer in one of them, but two functions use a pointer to that same memory location.
 Gasp! Which function actually owns it and is responsible for it?
