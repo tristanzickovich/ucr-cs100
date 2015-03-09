@@ -15,10 +15,7 @@ Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished h
 I’ve been working on it for like… 23 minutes already!”* Patrick exclaims. 
 He’s tested every case he could possibly think of; all two of them that came to his head. 
 Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! 
-*“Ahh Patrick, it’s… beautiful! Perfectly formatted to look like [Gary](http://spongebob.wikia.com/wiki/Gary_the_Snail). 
-A nice mixture of tabs and spaces. 
-And no lines longer than 200 characters!”* says SpongeBob. 
-As Patrick is about to submit his pride and joy, [Squidward](http://spongebob.wikia.com/wiki/Squidward_Tentacles) pokes his head through the window and scoffs, *“don’t forget to check for memory leaks, idiot”*, quickly disappearing from sight. 
+As he's about to submit his pride and joy, [Squidward](http://spongebob.wikia.com/wiki/Squidward_Tentacles) pokes his head through the window and scoffs, *“don’t forget to check for memory leaks, idiot”*, quickly disappearing from sight. 
 After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
 *“Let’s go catch those Jellyfish, Patrick!”* SpongeBob yells happily.   
 *“Just a second SpongeBob, I gotta check one last thing”* Patrick says bluntly.   
@@ -39,7 +36,6 @@ They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): 
 In other words, when you create raw pointers, you must delete them yourself explicitly in the program. 
 Forgetting to do so can cause major memory leaks! 
 Deleting them yourself may not seem like a big deal, but you must correctly decide when to do so, so you don’t ruin the rest of your program. 
-It’s also an easy thing to forget to do, which will cause you much hassle later on (like poor Patrick!).  
 With smart pointers, the cleanup is done for you! 
 That means you don’t have to determine where to place the delete! 
 Each smart pointer has a unique set of instructions that determine when it will be deleted.  
@@ -180,6 +176,3 @@ It directly calls a reference counter, which keeps track of the number of *intru
 When intrusive pointers are freed, if the reference count drops to zero, the object it points to will be destroyed.
 It is mainly used to increase performance of a program.   
 For more info, [click here!](http://baptiste-wicht.com/posts/2011/11/boost-intrusive_ptr.html)
-
-###Code Example
-Type code example here
