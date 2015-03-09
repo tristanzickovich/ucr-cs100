@@ -45,8 +45,51 @@ With smart pointers, the cleanup is done for you!
 That means you don’t have to determine where to place the delete! 
 Each smart pointer has a unique set of instructions that determine when it will be deleted.  
 You will choose which of the smart pointers to use based on the circumstance. 
-These aspects will be discussed under each individual smart pointer’s section.
+Lastly, they're just as easy to declare as raw pointers! Let's take a look at scoped and shared pointer declarations:
 
+```
+	#include <iostream>
+	//Make sure to include the boost library for the scoped and shared pointer
+	#include <boost/scoped_ptr.hpp>
+	#include <boost/shared_ptr.hpp>
+	using namespace std;
+		
+	class MrKrabbsDebt{
+		private:
+			//Scoped and Shared pointers declared as (private) class variables
+			boost::scoped_ptr<int> AmountOwedFriend;
+			boost::shared_ptr<int> AmountOwedCompany;
+		public:
+			//Scoped and Shared pointers initialized in constructors
+			MrKrabbsDebt()
+			  : AmountOwedFriend(new int)
+			{}
+			MrKrabbsDebt(boost::shared_ptr<int> num_ptr)
+			  : AmountOwedCompany(new int)
+			{}
+	};	
+	
+	int main(){
+		//Scoped pointer declared as a function variable
+		boost::scoped_ptr<int> OweSpongebob(new int);	
+		boost::scoped_ptr<int> OwePatrick(new int);
+		boost::scoped_ptr<int> OwePlankton(new int);
+		//Built in swap function. It swaps the implicit (OweSpongebob) with the explicit (OwePatrick) parameter
+		OweSpongebob.swap(OwePatrick);	
+		//Built in reset function. It resets the smart pointer to a new pointer of the same data type
+		OwePlankton.reset(new int);		
+		OwePatrick.reset(new int);
+		
+		//Shared pointer declared as a function variable
+		boost::shared_ptr<int> OweKrustyKrab(new int);
+		//Vector of shared pointers declaration
+		typedef vector< boost::shared_ptr<int> > OweChumBucket;
+		//Shared pointer passed as the explicit parameter to an object constructor
+		MrKrabbsDebt one(OweKrustyKrab);
+		MrKrabbsDebt two(OweKrustyKrab);
+		MrKrabbsDebt three(OweKrustyKrab);
+	}
+```
 ##Before Getting Started
 Smart pointers are a part of the boost library.  
 To use them you must include the boost library in your code, and prepend `boost::` in front of your pointer declaration. 
@@ -99,35 +142,7 @@ To maintain its proper functionality, there are a few rules that come along with
 
 ###How to Declare:
 
-```
-	#include <iostream>
-	//Make sure to include the boost library for the scoped pointer
-	#include <boost/scoped_ptr.hpp>
-	using namespace std;
-		
-	class PointerDemo{
-		private:
-			//Scoped pointer declared as a (private) class variable
-			boost::scoped_ptr<int> num_pointer
-		public:
-			//Scoped pointer initialized in a constructor
-			PointerDemo()
-			  : num_pointer(new int)
-			{}
-	};	
-	
-	int main(){
-		//Scoped pointer declared as a function variable
-		boost::scoped_ptr<int> my_ints(new int);	
-		boost::scoped_ptr<int> my_swap_ptr(new int);
-		boost::scoped_ptr<char> my_char(new char);
-		//Built in swap function. It swaps the implicit (my_ints) with the explicit (my_swap_ptr) parameter
-		my_ints.swap(my_swap_ptr);	
-		//Built in reset function. It resets the smart pointer to a new pointer of the same data type
-		my_ints.reset(new int);		
-		my_char.reset(new char);
-	}
-```
+
 
 The above code demonstrates declaration of scoped pointers. 
 
@@ -154,34 +169,6 @@ There are a few rules that go along with the shared pointer.
 
 ##How To Declare:
 
-```
-	#include <iostream>
-	//Make sure to include the boost library for the shared pointer
-	#include <boost/shared_ptr.hpp>
-	using namespace std;
-		
-	class PointerDemo{
-		private:
-			//Shared pointer declared as a (private) class variable
-			boost::shared_ptr<int> num_pointer;
-		public:
-			//Shared pointer initialized in a constructor for an object
-			PointerDemo(boost::shared_ptr<int> num_ptr)
-			  : num_pointer(new int)
-			{}
-	};	
-	
-	int main(){
-		//Shared pointer declared as a function variable
-		boost::shared_ptr<int> my_ints(new int);
-		//Vector of shared pointers declaration
-		typedef vector< boost::shared_ptr<int> > my_int_vec;
-		//Shared pointer passed as the explicit parameter to an object constructor
-		PointerDemo one(my_ints);
-		PointerDemo two(my_ints);
-		PointerDemo three(my_ints);
-	}
-```
 The above code demonstrates declaration of scoped pointers.
 
 ###Quick Notes (see above for visual): 
