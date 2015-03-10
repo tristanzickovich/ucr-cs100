@@ -8,27 +8,6 @@ They're self-managed, automatically deleting themselves when they're no longer n
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
 We'll cover *why*, *where*, and *how* to use them.
 
-##Intro (Are You Ready Kids?! Aye Aye Captain!)
-Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished his big programming project and it seems to work perfectly! 
-*“I think it’s done, [SpongeBob](http://spongebob.wikia.com/wiki/SpongeBob_SquarePants)! 
-I’ve been working on it for like… 23 minutes already!”* Patrick exclaims. 
-He’s tested every case he could possibly think of; all two of them that came to his head. 
-Nothing could ruin his day now! He just made his deadline and is ready to go catch Jellyfish with his best friend! 
-As he's about to submit his pride and joy, [Squidward](http://spongebob.wikia.com/wiki/Squidward_Tentacles) pokes his head through the window and scoffs, *“don’t forget to check for memory leaks, idiot”*, quickly disappearing from sight. 
-After all the time he’s put into it he wants to at least run valgrind and cppcheck to make sure it isn’t leaky…<br>
-*“Let’s go catch those Jellyfish, Patrick!”* SpongeBob yells happily.   
-*“Just a second SpongeBob, I gotta check one last thing”* Patrick says bluntly.   
-
-valgrind myBIGproject.out … tests … tests … tests … ENTER!   
-**Leak Summary:**   
-**Definitely Lost: 150,486 bytes in 2 blocks!**   
-
-*“Aw Barnacles!”* Patrick cries.
-He was so close that he could taste victory.
-Valgrind smashed his hopes into nothing better than the [Chum Bucket](http://spongebob.wikia.com/wiki/Chum_Bucket).
-Now he has to go back and manage all those pointers he used.
-Had he only taken the time to learn smart pointers. Tsk tsk.
-
 ##Why Use Smart Pointers?
 As Patrick learned, regular pointers (raw pointers) must be self-managed. 
 They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): must be closely monitored or can cause major problems.
@@ -146,26 +125,3 @@ There are a few rules that go along with the shared pointer.
 * To reset the pointer, call the function `reset()`
 
 
-###Other Smart Pointers (A Brief Coverage)
-**scoped_array and shared_array**   
-The *scoped_array* and *shared_array* follow most of the same conventions as the *scoped_ptr* and *shared_pointer* respectively. 
-You use the array version instead of the pointer version if you wish to have an array of the pointer.
-They are used and declared the same way, and have the same member functions.
-The main difference comes during destruction. 
-The destructor accounts for the pointer being an array, correctly deallocating memory (it calls `delete [] smart_array` rather than `delete smart_array` as the pointer version would).   
-For more info, [click here for *scoped_array*](http://flylib.com/books/en/1.437.1.24/1/)
-or [click here for *shared_array*](http://flylib.com/books/en/1.437.1.26/1/).
-
-**weak_ptr**   
-A *weak pointer* is *only* used alongside *shared pointers*, providing mutual ownership with the *shared pointer*.
-It provides one key additional member function called `lock()`.
-A *weak pointer* calling `lock()` will return a *shared pointer* (the *shared pointer* returned will be empty if no *shared pointer* objects remain).
-`lock()` is used to prevent accidental deletion of an object.   
-For more info, [click here!](http://www.drdobbs.com/weak-pointers/184402026)
-
-**intrusive_ptr**   
-The *intrusive pointer* acts quite similarly to a *shared pointer*, with one key difference.
-It directly calls a reference counter, which keeps track of the number of *intrusive pointers* in use.
-When intrusive pointers are freed, if the reference count drops to zero, the object it points to will be destroyed.
-It is mainly used to increase performance of a program.   
-For more info, [click here!](http://baptiste-wicht.com/posts/2011/11/boost-intrusive_ptr.html)
