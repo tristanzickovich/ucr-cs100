@@ -8,15 +8,14 @@ They're self-managed, automatically deleting themselves when they're no longer n
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`. 
 Using these pointers is similar to using regular pointers (raw pointers). 
 Include the boost library: `#include <boost/shared_ptr.hpp>` or `#include <boost/scoped_ptr.hpp>`.
-Declare your pointer. *Scoped pointer*: `boost::scoped_ptr<int> my_scoped_pointer;`, *Shared pointer*: `boost::shared_ptr<int> my_shared_pointer;`. 
+Declare your pointer. *Scoped pointer*: `boost::scoped_ptr<int> my_scoped_pointer;`,    *Shared pointer*: `boost::shared_ptr<int> my_shared_pointer;`. 
 And use it as you would a raw pointer.
 Specifics will be shown in the appropriate section.
 We'll cover *why*, *where*, and *how* to use these pointers.
 
 ##Why Use Smart Pointers?
-Raw poiters must be self-managed. 
-They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): must be closely monitored or can cause major problems.
-In other words, when you create raw pointers, you must delete them yourself explicitly in the program. 
+Raw pointers must be self-managed. 
+When you create them, you must delete them explicitly in the program. 
 Forgetting to do so can cause major memory leaks! 
 Deleting them yourself may not seem like a big deal, but doing so incorrectly can ruin the rest of your program. 
 With smart pointers, the cleanup is done for you, meaning you don’t have to delete them! 
@@ -85,7 +84,9 @@ You only need to enter this once and it will work for the remainder of your logi
 After this (or if using another system that supports compiling with C++ 11), compile using the following format:   
 `g++ -std=c++11 yourfile.cpp`
 
-##When To Use Smart Pointers
+##Scoped_ptr
+
+###When To Use
 As a rule of thumb, smart pointers should be used when there is ownership involved.
 To give an idea of ownership, say you have a program that has many functions.
 You declare your pointer in one of them, but two functions use a pointer to that same memory location.
@@ -95,7 +96,6 @@ If there is no instance of ownership, you should use raw pointers instead.
 For more detail and examples of ownership, 
 [click here!](http://ericlavesson.blogspot.com/2013/03/c-ownership-semantics.html)
 
-##Scoped_ptr
 ###How it's managed:
 As inferred by the name, a scoped pointer will be deleted when it goes out of scope. 
 Simply put, a scope can be viewed as everything in between at set of curly braces.
