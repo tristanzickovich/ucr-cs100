@@ -5,11 +5,16 @@ This tutorial covers smart pointers from the
 [boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
 Smart pointers help with memory managment, helping prevent memory leaks.
 They're self-managed, automatically deleting themselves when they're no longer needed.
-In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
-We'll cover *why*, *where*, and *how* to use them.
+In this tutorial we will focus on `scoped_ptr` and `shared_ptr`. 
+Using these pointers is similar to using regular pointers (raw pointers). 
+Include the boost library: `#include <boost/shared_ptr.hpp>` or `#include <boost/scoped_ptr.hpp>`.
+Declare your pointer. *Scoped pointer*: `boost::scoped_ptr<int> my_scoped_pointer;`, *Shared pointer*: `boost::shared_ptr<int> my_shared_pointer;`. 
+And use it as you would a raw pointer.
+Specifics will be shown in the appropriate section.
+We'll cover *why*, *where*, and *how* to use these pointers.
 
 ##Why Use Smart Pointers?
-As Patrick learned, regular pointers (raw pointers) must be self-managed. 
+Raw poiters must be self-managed. 
 They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): must be closely monitored or can cause major problems.
 In other words, when you create raw pointers, you must delete them yourself explicitly in the program. 
 Forgetting to do so can cause major memory leaks! 
