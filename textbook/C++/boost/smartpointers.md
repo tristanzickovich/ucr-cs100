@@ -3,11 +3,10 @@
 ##Overview
 This tutorial covers smart pointers from the 
 [boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
-Smart pointers are useful becuase they help with memory managment, helping eliminate memory leaks.
-They're self-managed, automatically deleting themselves when they are no longer needed.
+Smart pointers help with memory managment, helping prevent memory leaks.
+They're self-managed, automatically deleting themselves when they're no longer needed.
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`.
-We'll begin with *why* and *where* you want to use smart pointers, and discuss some things to know before using them.
-Then we'll jump into the details of *scoped pointers*, followed by *shared pointers*, and briefly touch upon the remaining smart pointers in the *boost library*. 
+We'll cover *why*, *where*, and *how* to use them.
 
 ##Intro (Are You Ready Kids?! Aye Aye Captain!)
 Finally! [Patrick Star](http://spongebob.wikia.com/wiki/Patrick_Star) finished his big programming project and it seems to work perfectly! 
@@ -36,24 +35,24 @@ They’re like [Plankton](http://spongebob.wikia.com/wiki/Sheldon_J._Plankton): 
 In other words, when you create raw pointers, you must delete them yourself explicitly in the program. 
 Forgetting to do so can cause major memory leaks! 
 Deleting them yourself may not seem like a big deal, but doing so incorrectly can ruin the rest of your program. 
-With smart pointers, the cleanup is done for you, meaning you don’t have to determine where to place the delete! 
+With smart pointers, the cleanup is done for you, meaning you don’t have to delete them! 
 Each smart pointer has a unique set of instructions that determine when it will be deleted.  
-They're easy to declare, leaving no reason not to use them where applicable. Let's take a look at scoped and shared pointer declarations:
+They're easy to declare, leaving no reason not to use them where applicable. Let's take a look at *scoped* and *shared pointer* declarations:
 
 ```
 	#include <iostream>
-	//Make sure to include the boost library for the scoped and shared pointer
+	  //Make sure to include the boost library for the scoped and shared pointer
 	#include <boost/scoped_ptr.hpp>
 	#include <boost/shared_ptr.hpp>
 	using namespace std;
 		
 	class MrKrabbsDebt{
 		private:
-			//Scoped and Shared pointers declared as (private) class variables
+			  //Scoped and Shared pointers declared as (private) class variables
 			boost::scoped_ptr<int> AmountOwedFriend;
 			boost::shared_ptr<int> AmountOwedCompany;
 		public:
-			//Scoped and Shared pointers initialized in constructors
+			  //Scoped and Shared pointers initialized in constructors
 			MrKrabbsDebt()
 			  : AmountOwedFriend(new int)
 			{}
@@ -63,21 +62,21 @@ They're easy to declare, leaving no reason not to use them where applicable. Let
 	};	
 	
 	int main(){
-		//Scoped pointer declared as a function variable
+		  //Scoped pointer declared as a function variable
 		boost::scoped_ptr<int> OweSpongebob(new int);	
 		boost::scoped_ptr<int> OwePatrick(new int);
 		boost::scoped_ptr<int> OwePlankton(new int);
-		//Built in swap function. It swaps the implicit (OweSpongebob) with the explicit (OwePatrick) parameter
+		  //Built in swap function. It swaps the implicit (OweSpongebob) with the explicit (OwePatrick) parameter
 		OweSpongebob.swap(OwePatrick);	
-		//Built in reset function. It resets the smart pointer to a new pointer of the same data type
+		  //Built in reset function. It resets the smart pointer to a new pointer of the same data type
 		OwePlankton.reset(new int);		
 		OwePatrick.reset(new int);
 		
-		//Shared pointer declared as a function variable
+		  //Shared pointer declared as a function variable
 		boost::shared_ptr<int> OweKrustyKrab(new int);
-		//Vector of shared pointers declaration
+		  //Vector of shared pointers declaration
 		typedef vector< boost::shared_ptr<int> > OweChumBucket;
-		//Shared pointer passed as the explicit parameter to an object constructor
+		  //Shared pointer passed as the explicit parameter to an object constructor
 		MrKrabbsDebt one(OweKrustyKrab);
 		MrKrabbsDebt two(OweKrustyKrab);
 		MrKrabbsDebt three(OweKrustyKrab);
@@ -102,9 +101,7 @@ You only need to enter this once and it will work for the remainder of your logi
 After this (or if using another system that supports compiling with C++ 11), compile using the following format:   
 `g++ -std=c++11 yourfile.cpp`
 
-
-	
-##Should I Use Smart Pointers?
+##When To Use Smart Pointers
 As a rule of thumb, smart pointers should be used when there is ownership involved.
 To give an idea of ownership, say you have a program that has many functions.
 You declare your pointer in one of them, but two functions use a pointer to that same memory location.
@@ -120,6 +117,7 @@ As inferred by the name, a scoped pointer will be deleted when it goes out of sc
 Simply put, a scope can be viewed as everything in between at set of curly braces.
 For instance, everything inside a function has its own scope. 
 Inside of a function (or class), any declared scoped pointers will be deleted when the function is destructed. 
+What sets it apart from normal variables declared in a scope is it is non-copyable. 
 
 ###General Rules:
 To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
