@@ -142,11 +142,9 @@ There are a few rules that go along with the shared pointer.
 2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
 
 ###Quick Notes For Using Either Pointer: 
+* For the value of the pointer, call the function `get()`.    
+* To reset the pointer, call the function `reset()`
 
-* Determine where you wish to declare your pointer.
-* Declare the shared pointer as you would a vector, except with `boost::` prepended, and an argument after in parentheses.
-* The pointer type goes between the angle brackets.
-* The argument inside the parentheses: `new` and then the type of pointer.
 
 ###Other Smart Pointers (A Brief Coverage)
 **scoped_array and shared_array**   
