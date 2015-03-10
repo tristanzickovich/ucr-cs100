@@ -1,1 +1,26 @@
-/ 100
+103 / 100
+
+PATH variable: 30/40
+    [10/10] Execute a program in the working directory.
+    [10/10] Execute a program not in the working directory.
+    [10/10] Execute a program using an absolute path.
+    [00/10] Attempt to execute a program that does not exist.
+           This should throw an error.
+
+^C signal: 30/30
+    [30/30] ^C when running a child process does not stop the entire shell.
+
+cd and prompt: 23/30
+    (The prompt must change correctly for all of the cases below for full
+     credit.)
+    [8/8] Change to a directory underneath the current working directory.
+    [8/8] Change to a directory above the current working directory.
+    [0/7] Change to a directory specified using an absolute path.
+    [7/7] Change to a directory which does not exist.
+
+extra credit: 20/20
+    [7/7] ^Z
+    [6/6] fg
+    [6/6] bg
+
+Total: 103/100
