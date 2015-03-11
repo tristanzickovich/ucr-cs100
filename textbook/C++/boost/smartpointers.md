@@ -62,7 +62,9 @@ What sets it apart from normal variables declared in a scope is it is non-copyab
 ###General Rules:
 To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
 
-1. They **CANNOT** be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.
+1. They **CANNOT** be copied.
+	Trying to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), results in an error.
+	This prevents the pointer from being deleted multiple times (incorrectly).
 2. They **CANNOT** be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.
 3. They **CAN** be swapped with another scoped pointer.   
 	There is a built in swap function that allows you to swap scoped pointers.   
@@ -122,7 +124,6 @@ There are a few rules that go along with the shared pointer.
 2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
 
 ###Quick Notes For Using Either Pointer: 
-* For the value of the pointer, call the function `get()`.    
-* To reset the pointer, call the function `reset()`
+* For the address of the pointer, call the function `get()`.    
 
 
