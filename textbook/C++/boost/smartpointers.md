@@ -60,7 +60,7 @@ Inside of a function (or class), any declared scoped pointers will be deleted wh
 What sets it apart from normal variables declared in a scope is it is non-copyable. 
 
 ###General Rules:
-To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
+To maintain proper functionality, there are a few rules that come along with *scoped pointers*. 
 
 1. 	They **CANNOT** be copied.   
 	Trying to set another pointer (or anything) equal to your scoped pointer is not allowed.
@@ -77,7 +77,7 @@ To maintain its proper functionality, there are a few rules that come along with
 	/usr/include/boost/smart_ptr/scoped_ptr.hpp:47:5: error: ‘boost::scoped_ptr<T>::scoped_ptr(const boost::scoped_ptr<T>&) [with T = int]’ is private scoped_ptr(scoped_ptr const &);
 	```
 	
-	This feature prevents the pointer from being deleted multiple times (incorrectly).
+	This feature prevents the pointer from being deleted multiple times (and incorrectly).
 	
 2. 	They **CANNOT** be used inside containers.    
 	Declaration inside a container, such as a vector, `vector< boost::scoped_ptr<int> > testPointer;`, typically will **not** generate a compiler error.
@@ -113,6 +113,27 @@ To maintain its proper functionality, there are a few rules that come along with
 		
 	2. 	Reset to a null pointer `FirstPointer.reset();` or `FirstPointer.reset(0);`.
 
+	Resetting the pointer provides a way to reset or replace the pointer if need be.
+	If you were creating a linked list and wanted to remove or replace a node, you would do so with the `reset()` function.
+
+##Shared Pointer
+###How It's Managed
+Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  
+Why? Say you have a class which contains a pointer as a member variable.
+In another function you create several objects of this class, all of which need access to that pointer.
+If it were to get deleted when one of the objects goes out of scope, your other objects would have no pointer to use, causing a problem!
+The shared pointer will be deleted when there are no remaining objects that own it (when the last object owning the pointer is destroyed).
+
+###General Rules:
+There are a few rules that go along with the shared pointer. 
+
+1. They **CAN** be copied: you may set another shared pointer equal to your shared pointer.
+2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
+
+###Quick Notes For Using Either Pointer: 
+* For the address of the pointer, call the function `get()`.    
+
+##not part of tutorial, take out upon completion
 ```
 	class MrKrabbsDebt{
 		private:
@@ -141,21 +162,3 @@ To maintain its proper functionality, there are a few rules that come along with
 		MrKrabbsDebt three(OweKrustyKrab);
 	}
 ```
-##Shared Pointer
-###How It's Managed
-Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  
-Why? Say you have a class which contains a pointer as a member variable.
-In another function you create several objects of this class, all of which need access to that pointer.
-If it were to get deleted when one of the objects goes out of scope, your other objects would have no pointer to use, causing a problem!
-The shared pointer will be deleted when there are no remaining objects that own it (when the last object owning the pointer is destroyed).
-
-###General Rules:
-There are a few rules that go along with the shared pointer. 
-
-1. They **CAN** be copied: you may set another shared pointer equal to your shared pointer.
-2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
-
-###Quick Notes For Using Either Pointer: 
-* For the address of the pointer, call the function `get()`.    
-
-
