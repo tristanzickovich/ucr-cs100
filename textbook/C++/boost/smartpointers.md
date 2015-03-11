@@ -3,7 +3,7 @@
 ##Overview
 This tutorial covers smart pointers from the 
 [boost library](http://www.boost.org/doc/libs/1_57_0/libs/smart_ptr/smart_ptr.htm).
-Smart pointers help with memory managment, helping prevent memory leaks.
+Smart pointers help with memory management, helping prevent memory leaks.
 They're self-managed, automatically deleting themselves when they're no longer needed.
 In this tutorial we will focus on `scoped_ptr` and `shared_ptr`. 
 Using these pointers is similar to using regular pointers (raw pointers). 
@@ -71,7 +71,7 @@ To maintain its proper functionality, there are a few rules that come along with
 		boost::scoped_ptr<int> myPointerDuplicate = myPointer;
 	```
 	
-	You will recieve an error saying:
+	You will receive an error saying:
 	
 	```
 	/usr/include/boost/smart_ptr/scoped_ptr.hpp:47:5: error: ‘boost::scoped_ptr<T>::scoped_ptr(const boost::scoped_ptr<T>&) [with T = int]’ is private scoped_ptr(scoped_ptr const &);
@@ -81,14 +81,14 @@ To maintain its proper functionality, there are a few rules that come along with
 	
 2. 	They **CANNOT** be used inside containers.    
 	Declaration inside a container, such as a vector, `vector< boost::scoped_ptr<int> > testPointer;`, typically will **not** generate a compiler error.
-	The compiler doesn't complain becuase the declaration seems to be syntactically correct.
+	The compiler doesn't complain since the declaration seems to be syntactically correct.
 	A problem arises because containers may copy and delete their elements behind the scenes (i.e. resizing themselves). 
 	Since the *scoped pointer* **cannot** be copied, when you try to perform a copying action, 
 	such as pushing it into a vector `boost::scoped_ptr<int> problematic; testPointer.push_back(problematic);`,
 	you will generate a large compiler error.
 	If you wish to use a *smart pointer* in a container, check out the *shared pointers* section.
 
-3. 	They **CAN** be swapped with another scoped pointer.   
+3. 	They **CAN** be swapped with other scoped pointers.   
 	There is a built in swap function that allows you to swap scoped pointers.   
 	```
 		boost::scoped_ptr<int> FirstPointer(new int);
