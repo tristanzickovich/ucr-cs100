@@ -78,9 +78,15 @@ To maintain its proper functionality, there are a few rules that come along with
 	```
 	
 	This feature prevents the pointer from being deleted multiple times (incorrectly).
+	
 2. 	They **CANNOT** be used inside containers.    
-	Attempted use inside a container such as a vector will result in an error. 
-	If this is your intention, check out the shared pointers section.
+	Declaration inside a container, such as a vector, `vector< boost::scoped_ptr<int> > testPointer;`, typically will **not** generate a compiler error.
+	The compiler doesn't complain becuase the declaration seems to be syntactically correct.
+	A problem arises because containers may copy and delete their elements behind the scenes (i.e. resizing themselves). 
+	Since the *scoped pointer* **cannot** be copied, when you try to perform a copying action, 
+	such as pushing it into a vector `boost::scoped_ptr<int> problematic; testPointer.push_back(problematic);`,
+	you will generate a large compiler error.
+	If you wish to use a *smart pointer* in a container, check out the *shared pointers* section.
 
 3. 	They **CAN** be swapped with another scoped pointer.   
 	There is a built in swap function that allows you to swap scoped pointers.   
@@ -102,7 +108,10 @@ To maintain its proper functionality, there are a few rules that come along with
 		``` 
 		  	
 		which deletes the existing pointer, replacing it with the newly declared one.
-	2. 	Reset to a null pointer `FirstPointer.reset();`.
+		It appears that we will have a memory leak after declaring `ptr`, but by using it in the `reset()` function, we give its ownership to `FirstPointer`.
+		Since `FirstPointer` is a smart pointer, it will be automatically deleted.
+		
+	2. 	Reset to a null pointer `FirstPointer.reset();` or `FirstPointer.reset(0);`.
 
 ```
 	class MrKrabbsDebt{
