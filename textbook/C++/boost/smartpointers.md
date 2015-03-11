@@ -62,24 +62,40 @@ What sets it apart from normal variables declared in a scope is it is non-copyab
 ###General Rules:
 To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
 
-1. They **CANNOT** be copied.
-	Trying to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), results in an error.
-	This prevents the pointer from being deleted multiple times (incorrectly).
-2. They **CANNOT** be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.
-3. They **CAN** be swapped with another scoped pointer.   
+1. 	They **CANNOT** be copied.
+	Trying to set another pointer (or anything) equal to your scoped pointer is not allowed.
+	If you tried something like this: 
+	```
+		boost::scoped_ptr<int> myPointer(new int);
+		boost::scoped_ptr<int> myPointerDuplicate = myPointer;
+	```
+	You will recieve an error saying `/usr/include/boost/smart_ptr/scoped_ptr.hpp:47:5: error: ‘boost::scoped_ptr<T>::scoped_ptr(const boost::scoped_ptr<T>&) [with T = int]’ is private scoped_ptr(scoped_ptr const &);`
+	This feature prevents the pointer from being deleted multiple times (incorrectly).
+2. 	They **CANNOT** be used inside containers.    
+	Attempted use inside a container such as a vector will result in an error. 
+	If this is your intention, check out the shared pointers section.
+
+3. 	They **CAN** be swapped with another scoped pointer.   
 	There is a built in swap function that allows you to swap scoped pointers.   
-```
-	boost::scoped_ptr<int> FirstPointer(new int);
-	boost::scoped_ptr<int> SecondPointer(new int);
-	FirstPointer.swap(Second Pointer);
-```
-	It swaps the implicit (FirstPointer) with the explicit (SecondPointer) parameter
-4. They **CAN** be reset.   
+	```
+		boost::scoped_ptr<int> FirstPointer(new int);
+		boost::scoped_ptr<int> SecondPointer(new int);
+		FirstPointer.swap(Second Pointer);
+	```
+	It swaps the implicit (FirstPointer) with the explicit (SecondPointer) parameter.
+	
+4. 	They **CAN** be reset.   
 	There is a built in reset function. It allows you to reset the pointer in one of two ways:
-	Either to another smart pointer of the same data type, deleting the existing pointer,
-	`FirstPointer.reset(SecondPointer);`
-	or to a null pointer
-	`FirstPointer.reset();`
+
+	1. 	Reset to a pointer declared with the `new` expression,
+	    
+		```
+			int *ptr = new int;
+			FirstPointer.reset(ptr);
+		``` 
+		  	
+		which deletes the existing pointer, replacing it with the newly declared one.
+	2. 	Reset to a null pointer `FirstPointer.reset();`.
 
 ```
 	class MrKrabbsDebt{
