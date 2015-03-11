@@ -62,14 +62,21 @@ What sets it apart from normal variables declared in a scope is it is non-copyab
 ###General Rules:
 To maintain its proper functionality, there are a few rules that come along with the scoped pointer. 
 
-1. 	They **CANNOT** be copied.
+1. 	They **CANNOT** be copied.   
 	Trying to set another pointer (or anything) equal to your scoped pointer is not allowed.
-	If you tried something like this: 
+	If you tried something like this:
+
 	```
 		boost::scoped_ptr<int> myPointer(new int);
 		boost::scoped_ptr<int> myPointerDuplicate = myPointer;
 	```
-	You will recieve an error saying `/usr/include/boost/smart_ptr/scoped_ptr.hpp:47:5: error: ‘boost::scoped_ptr<T>::scoped_ptr(const boost::scoped_ptr<T>&) [with T = int]’ is private scoped_ptr(scoped_ptr const &);`
+	
+	You will recieve an error saying:
+	
+	```
+	/usr/include/boost/smart_ptr/scoped_ptr.hpp:47:5: error: ‘boost::scoped_ptr<T>::scoped_ptr(const boost::scoped_ptr<T>&) [with T = int]’ is private scoped_ptr(scoped_ptr const &);
+	```
+	
 	This feature prevents the pointer from being deleted multiple times (incorrectly).
 2. 	They **CANNOT** be used inside containers.    
 	Attempted use inside a container such as a vector will result in an error. 
