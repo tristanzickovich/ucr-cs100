@@ -13,58 +13,6 @@ And use it as you would a raw pointer.
 Specifics will be shown in the appropriate section.
 We'll cover *why*, *where*, and *how* to use these pointers.
 
-##Why Use Smart Pointers?
-Raw pointers must be self-managed. 
-When you create them, you must delete them explicitly in the program. 
-Forgetting to do so can cause major memory leaks! 
-Deleting them yourself may not seem like a big deal, but doing so incorrectly can ruin the rest of your program. 
-With smart pointers, the cleanup is done for you, meaning you don’t have to delete them! 
-Each smart pointer has a unique set of instructions that determine when it will be deleted.  
-They're easy to declare, leaving no reason not to use them where applicable. Let's take a look at *scoped* and *shared pointer* declarations:
-
-```
-	#include <iostream>
-	  //Make sure to include the boost library for the scoped and shared pointer
-	#include <boost/scoped_ptr.hpp>
-	#include <boost/shared_ptr.hpp>
-	using namespace std;
-		
-	class MrKrabbsDebt{
-		private:
-			  //Scoped and Shared pointers declared as (private) class variables
-			boost::scoped_ptr<int> AmountOwedFriend;
-			boost::shared_ptr<int> AmountOwedCompany;
-		public:
-			  //Scoped and Shared pointers initialized in constructors
-			MrKrabbsDebt()
-			  : AmountOwedFriend(new int)
-			{}
-			MrKrabbsDebt(boost::shared_ptr<int> num_ptr)
-			  : AmountOwedCompany(new int)
-			{}
-	};	
-	
-	int main(){
-		  //Scoped pointer declared as a function variable
-		boost::scoped_ptr<int> OweSpongebob(new int);	
-		boost::scoped_ptr<int> OwePatrick(new int);
-		boost::scoped_ptr<int> OwePlankton(new int);
-		  //Built in swap function. It swaps the implicit (OweSpongebob) with the explicit (OwePatrick) parameter
-		OweSpongebob.swap(OwePatrick);	
-		  //Built in reset function. It resets the smart pointer to a new pointer of the same data type
-		OwePlankton.reset(new int);		
-		OwePatrick.reset(new int);
-		
-		  //Shared pointer declared as a function variable
-		boost::shared_ptr<int> OweKrustyKrab(new int);
-		  //Vector of shared pointers declaration
-		typedef vector< boost::shared_ptr<int> > OweChumBucket;
-		  //Shared pointer passed as the explicit parameter to an object constructor
-		MrKrabbsDebt one(OweKrustyKrab);
-		MrKrabbsDebt two(OweKrustyKrab);
-		MrKrabbsDebt three(OweKrustyKrab);
-	}
-```
 ##Before Getting Started
 Smart pointers are a part of the boost library.
 In total, boost contains six different smart pointers.  
@@ -84,10 +32,16 @@ You only need to enter this once and it will work for the remainder of your logi
 After this (or if using another system that supports compiling with C++ 11), compile using the following format:   
 `g++ -std=c++11 yourfile.cpp`
 
-##Scoped_ptr
+##Why Use Smart Pointers?
+Raw pointers must be self-managed. 
+When you create them, you must delete them explicitly in the program. 
+Forgetting to do so can cause major memory leaks! 
+Deleting them yourself may not seem like a big deal, but doing so incorrectly can ruin the rest of your program. 
+With smart pointers, the cleanup is done for you, meaning you don’t have to delete them! 
+Each smart pointer has a unique set of instructions that determine when it will be deleted.  
 
 ###When To Use
-As a rule of thumb, smart pointers should be used when there is ownership involved.
+Smart pointers should be used when there is ownership involved.
 To give an idea of ownership, say you have a program that has many functions.
 You declare your pointer in one of them, but two functions use a pointer to that same memory location.
 Gasp! Which function actually owns it and is responsible for it?
@@ -95,6 +49,8 @@ Ownership means a specific function “owns” the pointer and must delete it wh
 If there is no instance of ownership, you should use raw pointers instead.  
 For more detail and examples of ownership, 
 [click here!](http://ericlavesson.blogspot.com/2013/03/c-ownership-semantics.html)
+
+##Scoped_ptr
 
 ###How it's managed:
 As inferred by the name, a scoped pointer will be deleted when it goes out of scope. 
@@ -108,9 +64,49 @@ To maintain its proper functionality, there are a few rules that come along with
 
 1. They **CANNOT** be copied: if you try to set another pointer equal to your scoped pointer (myPointer = myScopedPointer), you will get an error.
 2. They **CANNOT** be used inside containers: attempted use inside a container such as a vector will result in an error. If this is your intention, check out the shared pointers section.
-3. They **CAN** be swapped with another scoped pointer: there is a built in swap function that allows you to swap scoped pointers.
-4. They **CAN** be reset: There is also a built in reset function which allows you to reset the pointer to another smart pointer of the same data type, deleting the existing pointer.
+3. They **CAN** be swapped with another scoped pointer.   
+	There is a built in swap function that allows you to swap scoped pointers.   
+```
+	boost::scoped_ptr<int> FirstPointer(new int);
+	boost::scoped_ptr<int> SecondPointer(new int);
+	FirstPointer.swap(Second Pointer);
+```
+	It swaps the implicit (FirstPointer) with the explicit (SecondPointer) parameter
+4. They **CAN** be reset.   
+	There is a built in reset function. It allows you to reset the pointer in one of two ways:
+	Either to another smart pointer of the same data type, deleting the existing pointer,
+	`FirstPointer.reset(SecondPointer);`
+	or to a null pointer
+	`FirstPointer.reset();`
 
+```
+	class MrKrabbsDebt{
+		private:
+			  //Scoped and Shared pointers declared as (private) class variables
+			boost::scoped_ptr<int> AmountOwedFriend;
+			boost::shared_ptr<int> AmountOwedCompany;
+		public:
+			  //Scoped and Shared pointers initialized in constructors
+			MrKrabbsDebt()
+			  : AmountOwedFriend(new int)
+			{}
+			MrKrabbsDebt(boost::shared_ptr<int> num_ptr)
+			  : AmountOwedCompany(new int)
+			{}
+	};	
+	
+	int main(){
+	
+		  //Shared pointer declared as a function variable
+		boost::shared_ptr<int> OweKrustyKrab(new int);
+		  //Vector of shared pointers declaration
+		typedef vector< boost::shared_ptr<int> > OweChumBucket;
+		  //Shared pointer passed as the explicit parameter to an object constructor
+		MrKrabbsDebt one(OweKrustyKrab);
+		MrKrabbsDebt two(OweKrustyKrab);
+		MrKrabbsDebt three(OweKrustyKrab);
+	}
+```
 ##Shared Pointer
 ###How It's Managed
 Unlike the scoped pointer, the shared pointer is not deleted when an instance of the pointer goes out of scope.  
