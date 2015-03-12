@@ -130,35 +130,7 @@ There are a few rules that go along with the shared pointer.
 1. They **CAN** be copied: you may set another shared pointer equal to your shared pointer.
 2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
 
-###Quick Notes For Using Either Pointer: 
+###Quick Notes: 
 * For the address of the pointer, call the function `get()`.    
+* Add other side notes here
 
-##not part of tutorial, take out upon completion
-```
-	class MrKrabbsDebt{
-		private:
-			  //Scoped and Shared pointers declared as (private) class variables
-			boost::scoped_ptr<int> AmountOwedFriend;
-			boost::shared_ptr<int> AmountOwedCompany;
-		public:
-			  //Scoped and Shared pointers initialized in constructors
-			MrKrabbsDebt()
-			  : AmountOwedFriend(new int)
-			{}
-			MrKrabbsDebt(boost::shared_ptr<int> num_ptr)
-			  : AmountOwedCompany(new int)
-			{}
-	};	
-	
-	int main(){
-	
-		  //Shared pointer declared as a function variable
-		boost::shared_ptr<int> OweKrustyKrab(new int);
-		  //Vector of shared pointers declaration
-		typedef vector< boost::shared_ptr<int> > OweChumBucket;
-		  //Shared pointer passed as the explicit parameter to an object constructor
-		MrKrabbsDebt one(OweKrustyKrab);
-		MrKrabbsDebt two(OweKrustyKrab);
-		MrKrabbsDebt three(OweKrustyKrab);
-	}
-```
