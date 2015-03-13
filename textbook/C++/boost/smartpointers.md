@@ -114,7 +114,6 @@ To maintain proper functionality, there are a few rules that come along with *sc
 	2. 	Reset to a null pointer `FirstPointer.reset();` or `FirstPointer.reset(0);`.
 
 	Resetting the pointer provides a way to reset or replace the pointer if need be.
-	If you were creating a linked list and wanted to remove or replace a node, you would do so with the `reset()` function.
 
 ##Shared Pointer
 ###How It's Managed
@@ -127,8 +126,31 @@ The shared pointer will be deleted when there are no remaining objects that own 
 ###General Rules:
 There are a few rules that go along with the shared pointer. 
 
-1. They **CAN** be copied: you may set another shared pointer equal to your shared pointer.
-2. They **CAN** be used inside containers: they may be used inside a container such as a vector.
+1.	They **CAN** be copied.   
+	Setting another shared pointer equal to your shared pointer is allowed.
+
+	```
+		boost::shared_ptr<int> t;
+		boost::shared_ptr<int> v = t;
+	```
+	If you wish to have multiple pointers pointing to the same memory, the *shared pointer* lets you.
+	
+2.	They **CAN** be used inside containers.   
+	They may be used inside a container such as a vector.
+	```
+		typedef vector< boost::shared_ptr<int> > pointerVector;
+	```
+	A container of pointers is useful when referencing an object.
+	It elimates the [slicing problem](http://stackoverflow.com/questions/274626/what-is-object-slicing).
+	
+3. 	They **CAN** be swapped with other scoped pointers.  
+	The swap for *shared pointer* acts the same for the *scoped pointer*.
+	See the *scoped pointer* section for more info.
+
+4. 	They **CAN** be reset.   
+	The reset for *shared pointer* acts the same for the *scoped pointer*.
+	See the *scoped pointer* section for more info.
+	One additional example of `reset()` for the *shared pointer* is if you were creating a linked list and wanted to remove or replace a node, you'd simply call reset on it.
 
 ###Quick Notes: 
 * For the address of the pointer, call the function `get()`.    
